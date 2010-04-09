@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin_manifest>
+	<field key="author" value="Diego Andrés Ramírez Aragón" />
+	<field key="version" value="1.0" />
+	<field key="description" value="Battery of improvements to form related views&lt;br&gt;- autosuggest field&lt;br&gt;- comboselect field &lt;br&gt;- validation framework" />
+	<field key="copyright" value="(C) 2010" />
+	<field key="elgg_version" value="2010030101" />
+</plugin_manifest>
