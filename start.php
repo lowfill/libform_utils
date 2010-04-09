@@ -2,7 +2,12 @@
 
 
 function libform_utils_init(){
+    register_page_handler('libform','libform_page_handler');
     register_page_handler('suggest','suggest_page_handler');
+}
+
+function libform_page_handler($page){
+    include dirname(__FILE__)."/examples.php";
 }
 
 /**
