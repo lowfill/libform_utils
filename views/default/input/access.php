@@ -41,6 +41,11 @@ if(empty($internalid)){
     $internalid = $vars['internalname'];
 }
 
+if(isset($vars['validate'])){
+    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
+    $class.=" $validators";
+}
+
 if (is_array($vars['options']) && sizeof($vars['options']) > 0) {
 	?>
 

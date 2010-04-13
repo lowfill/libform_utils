@@ -19,12 +19,18 @@ $class = $vars['class'];
 if (!$class) {
     $class = "input-radio";
 }
-
+if(isset($vars['validate'])){
+    $validators = libform_get_validators($vars['validate']);
+}
+$i=0;
 foreach($vars['options'] as $label => $option) {
     if (strtolower($option) != strtolower($vars['value'])) {
         $selected = "";
     } else {
         $selected = "checked = \"checked\"";
+    }
+    if($i==0 && !empty($validators)){
+        $class.=" $validators";
     }
     $labelint = (int) $label;
     if ("{$label}" == "{$labelint}") {
@@ -45,5 +51,7 @@ foreach($vars['options'] as $label => $option) {
     if(!empty($vars['separator'])){
         $separator=$vars['separator'];
     }
+    $i++;
     echo "<label><input type=\"radio\" $disabled {$vars['js']} name=\"{$vars['internalname']}\" $internalid value=\"".htmlentities($option, ENT_QUOTES, 'UTF-8')."\" {$selected} class=\"$class\" />{$label}</label>$separator";
 }
+echo "<label for=\"{$vars['internalname']}\" class=\"error\">{$vars['validate_messages']}</label>";

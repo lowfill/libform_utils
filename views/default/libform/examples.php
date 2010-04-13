@@ -1,25 +1,23 @@
 <?php
 
 
-//FIXME Make a better examples page
-$options_values = array(
-    "1"=>"Item 1",
-    "2"=>"Item 2",
-    "3"=>"Item 3",
-    "4"=>"Item 4",
-);
+global $CONFIG;
 
-echo "<form>";
-echo "<h2>".elgg_echo("libforms:example:comboselect")."</h2>";
-echo elgg_view('input/comboselect',array('internalname'=>"comboselect",'options_values'=>$options_values));
-
-echo "<h2>".elgg_echo("libforms:example:autosuggest")."</h2>";
-echo elgg_view('input/autosuggest',array('internalname'=>'group_id',
-                                            'internalid'=>'group_id',
-                                            'suggest'=>'groups',
-                                            'minChars'=>2,
-                                            'tokenLimit'=>1));
-echo "</form>";
-
+$option = get_input('option','comboselect');
+$selected="class=\"selected\"";
+if(!empty($option)){
+    $var="{$option}_selected";
+    $$var=$selected;
+}
 ?>
 
+<div id="elgg_horizontal_tabbed_nav">
+  <ul>
+  <li><a href="<?php echo $vars['url']."pg/libform/?option=comboselect";?>" <?php echo $comboselect_selected?>><?php echo elgg_echo("libform:comboselect");?></a></li>
+  <li><a href="<?php echo $vars['url']."pg/libform/?option=autosuggest";?>" <?php echo $autosuggest_selected?>><?php echo elgg_echo("libform:autosuggest");?></a></li>
+  <li><a href="<?php echo $vars['url']."pg/libform/?option=validate";?>" <?php echo $validate_selected?>><?php echo elgg_echo("libform:validate");?></a></li>
+  </ul>
+</div>
+<?php
+    echo elgg_view("libform/examples/{$option}",$vars);
+?>

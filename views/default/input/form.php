@@ -19,6 +19,7 @@
  * @uses $vars['disable_security'] turn off CSRF security by setting to true
  */
 
+//FIXME Add a name to the form even if not provided by user
 if (isset($vars['internalname'])) {
 	$name = $vars['internalname'];
 	$id = $name;
@@ -55,3 +56,9 @@ if (!isset($vars['disable_security']) || $vars['disable_security'] != true) {
 <?php echo $security_header; ?>
 <?php echo $body; ?>
 </form>
+<?php
+    if($vars['validate']){
+        elgg_extend_view("metatags","jquery/validate");
+        echo elgg_view('input/validator',$vars);
+    }
+?>

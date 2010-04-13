@@ -2,6 +2,7 @@
 
 
 function libform_utils_init(){
+    elgg_extend_view('css','libform/css');
     register_page_handler('libform','libform_page_handler');
     register_page_handler('suggest','suggest_page_handler');
 }
@@ -61,6 +62,27 @@ function suggest_page_handler($page){
     }
 }
 
+function libform_get_validators($validator_str,$messages=""){
+    $validators = array();
+    $u_validators = explode(";",$validator_str);
+    if(!is_array($u_validators)){
+        $u_validators = array($u_validators);
+    }
+    foreach($u_validators as $validator){
+        if(empty($validator)) continue;
+        error_log($validator." ".strpos($validator,":"));
+        if(strpos($validator,":")>0){
+            $validators[]="{$validator}";
+        }
+        else{
+            $validators[]="{$validator}:true";
+        }
+    }
+    if(!empty($messages)){
+        $validators[]="messages:{".$messages."}";
+    }
+    return "{".implode(",",$validators)."}";
+}
 register_elgg_event_handler('init','system','libform_utils_init');
 
 ?>

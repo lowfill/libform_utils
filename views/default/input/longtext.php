@@ -36,6 +36,11 @@ if(empty($internalid)){
     $internalid = $vars['internalname'];
 }
 
+if(isset($vars['validate'])){
+    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
+    $class.=" $validators";
+}
+
 ?>
 
 <textarea class="<?php echo $class; ?>" name="<?php echo $vars['internalname']; ?>" <?php echo "id=\"{$internalid}\""; ?> <?php if ($disabled) echo ' disabled="yes" '; ?> <?php echo $vars['js']; ?>><?php echo htmlentities($value, ENT_QUOTES, 'UTF-8'); ?></textarea>

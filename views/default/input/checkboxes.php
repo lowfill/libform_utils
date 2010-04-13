@@ -19,6 +19,10 @@ $class = $vars['class'];
 if (!$class) {
     $class = "input-checkboxes";
 }
+if(isset($vars['validate'])){
+    $validators = libform_get_validators($vars['validate']);
+}
+$i=0;
 
 foreach($vars['options'] as $label => $option) {
     //if (!in_array($option,$vars['value'])) {
@@ -36,6 +40,9 @@ foreach($vars['options'] as $label => $option) {
         } else {
             $selected = "checked = \"checked\"";
         }
+    }
+    if($i==0 && !empty($validators)){
+        $class.=" $validators";
     }
     $labelint = (int) $label;
     if ("{$label}" == "{$labelint}") {
@@ -56,3 +63,4 @@ foreach($vars['options'] as $label => $option) {
     }
     echo "<label><input type=\"checkbox\" $internalid $disabled {$vars['js']} name=\"{$vars['internalname']}[]\" value=\"".htmlentities($option, ENT_QUOTES, 'UTF-8')."\" {$selected} class=\"$class\" />{$label}</label>$separator";
 }
+echo "<label for=\"{$vars['internalname']}[]\" class=\"error\">{$vars['validate_messages']}</label>";
