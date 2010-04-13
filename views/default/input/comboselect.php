@@ -17,8 +17,13 @@ else{
 
 $size = (!empty($vars["size"]))?$vars["size"]:6;
 
+$internalid = $vars['internalid'];
+if(empty($internalid)){
+    $internalid = $vars['internalname'];
+}
+
 ?>
-<select id="<?php echo $vars['internalname']; ?>" name="<?php echo $vars['internalname']; ?>[]" multiple="multiple" size="<?php echo $size; ?>" <?php echo $vars['js']; ?> <?php if ($vars['disabled']) echo ' disabled="yes" '; ?> class="<?php echo $class; ?>">
+<select id="<?php echo $internalid; ?>" name="<?php echo $vars['internalname']; ?>[]" multiple="multiple" size="<?php echo $size; ?>" <?php echo $vars['js']; ?> <?php if ($vars['disabled']) echo ' disabled="yes" '; ?> class="<?php echo $class; ?>">
 <?php
 	if ($vars['options_values'])
 	{
@@ -45,6 +50,6 @@ $size = (!empty($vars["size"]))?$vars["size"]:6;
 <div class="clearfloat"> </div>
 <script type="text/javascript">
   jQuery(document).ready(function(){
-	 $('#<?php echo $vars["internalname"]?>').comboselect({ sort: 'right'});
+	 $('#<?php echo $internalid?>').comboselect({ sort: 'right'});
   });
 </script>

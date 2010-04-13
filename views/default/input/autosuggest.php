@@ -63,6 +63,6 @@ $opts = json_encode($auto_suggest_defaults);
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
-	jQuery("[name=<?php echo $vars['internalname']?>]").tokenInput("<?php echo $suggest_url?>",<?php echo $opts?>);
+	jQuery("#<?php echo $vars['internalname']?>").tokenInput("<?php echo $suggest_url?>",<?php echo $opts?>);
 });
 </script>
