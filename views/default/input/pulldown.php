@@ -26,6 +26,11 @@ if(empty($internalid)){
     $internalid = $vars['internalname'];
 }
 
+if(isset($vars['validate'])){
+    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
+    $class.=" $validators";
+}
+
 ?>
 
 <select name="<?php echo $vars['internalname']; ?>" <?php echo "id=\"{$internalid}\""; ?> <?php echo $vars['js']; ?> <?php if ($vars['disabled']) echo ' disabled="yes" '; ?> class="<?php echo $class; ?>">

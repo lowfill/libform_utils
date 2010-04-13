@@ -5,7 +5,12 @@
 * @copyright Corporación Somos más - 2008
 */
 
-extend_view("metatags","jquery/comboselect");
+elgg_extend_view("metatags","jquery/comboselect");
+
+//FIXME Implements automatic validator for this kind of field
+if(isset($vars['validate'])){
+    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
+}
 
 $selected_values = array();
 if(!is_array($vars["value"])){

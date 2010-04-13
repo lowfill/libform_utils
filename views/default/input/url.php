@@ -22,6 +22,11 @@ $internalid = $vars['internalid'];
 if(empty($internalid)){
     $internalid = $vars['internalname'];
 }
+$vars["validate"] = "url;".$vars["validate"];
+if(isset($vars['validate'])){
+    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
+    $class.=" $validators";
+}
 
 ?>
 

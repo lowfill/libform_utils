@@ -26,6 +26,12 @@ if(empty($internalid)){
     $internalid = $vars['internalname'];
 }
 
+$vars['validate'] = "email;{$vars['validate']}";
+if(isset($vars['validate'])){
+    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
+    $class.=" $validators";
+}
+
 ?>
 
 <input type="text" <?php echo $vars['js']; ?> <?php echo $internalid; ?> name="<?php echo $vars['internalname']; ?>" <?php if (isset($vars['internalid'])) echo "id=\"{$vars['internalid']}\""; ?>value="<?php echo htmlentities($vars['value'], ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo $class; ?>"/>

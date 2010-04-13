@@ -9,7 +9,7 @@
  *
  * @uses $vars['suggest'] To specify what kind of suggestion you wants
  */
-extend_view("metatags","jquery/autosuggest");
+elgg_extend_view("metatags","jquery/autosuggest");
 
 echo elgg_view('input/text',$vars);
 
