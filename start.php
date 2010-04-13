@@ -1,12 +1,27 @@
 <?php
+/**
+ * Elgg libform_utils plugin
+ *
+ * @package ElggLibFormUtils
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
+ * @author Diego Andrés Ramírez Aragón <dramirezaragon@gmail.com>
+ * @copyright Diego Andrés Ramírez Aragón 2010
+ * @link http://github.com/lowfill/libform_utils
+ */
 
-
+/**
+ * libform_utils initialization
+ */
 function libform_utils_init(){
     elgg_extend_view('css','libform/css');
     register_page_handler('libform','libform_page_handler');
     register_page_handler('suggest','suggest_page_handler');
 }
 
+/**
+ * libform_utils page handler
+ * @param $page
+ */
 function libform_page_handler($page){
     include dirname(__FILE__)."/examples.php";
 }
@@ -62,6 +77,13 @@ function suggest_page_handler($page){
     }
 }
 
+/**
+ * Get the list of validators and messages from an string
+ *
+ * @param string $validator_str ';' separated validators string
+ * @param string $messages String with the custom messages for the field
+ * @return string
+ */
 function libform_get_validators($validator_str,$messages=""){
     $validators = array();
     $u_validators = explode(";",$validator_str);

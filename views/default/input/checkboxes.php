@@ -3,16 +3,19 @@
  * Elgg checkbox input
  * Displays a checkbox input field
  *
- * @package Elgg
+ * @package ElggLibFormUtils
  * @subpackage Core
  * @author Curverider Ltd
- * @link http://elgg.org/
+ * @author Diego Andrés Ramírez Aragón
+ * @link http://github.com/lowfill/libform_utils
  *
  * @uses $vars['value'] The current value, if any
  * @uses $vars['js'] Any Javascript to enter into the input tag
  * @uses $vars['internalname'] The name of the input field
  * @uses $vars['options'] An array of strings representing the label => options for the checkbox field
  * @uses $vars['separator'] Separator to be used '<br>' by default
+ * @uses $vars['validate'] The validator rules
+ * @uses $vars['validate_messages'] The custom validator messages
  */
 
 $class = $vars['class'];

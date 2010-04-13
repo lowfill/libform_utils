@@ -3,10 +3,11 @@
  * Elgg file input
  * Displays a file input field
  *
- * @package Elgg
+ * @package ElggLibFormUtils
  * @subpackage Core
  * @author Curverider Ltd
- * @link http://elgg.org/
+ * @author Diego Andrés Ramírez Aragón
+ * @link http://github.com/lowfill/libform_utils
  *
  * @uses $vars['js'] Any Javascript to enter into the input tag
  * @uses $vars['internalname'] The name of the input field
@@ -14,7 +15,8 @@
  * @uses $vars['class'] CSS class
  * @uses $vars['disabled'] Is the input field disabled?
  * @uses $vars['value'] The current value if any
- *
+ * @uses $vars['validate'] The validator rules. 'accept' rule is recomended here
+ * @uses $vars['validate_messages'] The custom validator messages
  */
 
 if (!empty($vars['value'])) {

@@ -4,10 +4,11 @@
  * Use this view for forms rather than creating a form tag in the wild as it provides
  * extra security which help prevent CSRF attacks.
  *
- * @package Elgg
+ * @package ElggLibFormUtils
  * @subpackage Core
  * @author Curverider Ltd
- * @link http://elgg.org/
+ * @author Diego Andrés Ramírez Aragón
+ * @link http://github.com/lowfill/libform_utils
  *
  * @uses $vars['body'] The body of the form (made up of other input/xxx views and html
  * @uses $vars['method'] Method (default POST)
@@ -17,6 +18,7 @@
  * @uses $vars['internalid'] id for the form for CSS/Javascript
  * @uses $vars['internalname'] name for the form for Javascript
  * @uses $vars['disable_security'] turn off CSRF security by setting to true
+ * @uses $vars['validate'] If you wants this form to be validated
  */
 
 //FIXME Add a name to the form even if not provided by user

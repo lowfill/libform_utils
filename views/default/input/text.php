@@ -3,19 +3,19 @@
  * Elgg text input
  * Displays a text input field
  *
- * @package Elgg
+ * @package ElggLibFormUtils
  * @subpackage Core
-
  * @author Curverider Ltd
-
- * @link http://elgg.org/
+ * @author Diego Andrés Ramírez Aragón
+ * @link http://github.com/lowfill/libform_utils
  *
  * @uses $vars['value'] The current value, if any
  * @uses $vars['js'] Any Javascript to enter into the input tag
  * @uses $vars['internalname'] The name of the input field
  * @uses $vars['disabled'] If true then control is read-only
  * @uses $vars['class'] Class override
- * @uses $vars['validate'] Validate methods to be used with this field
+ * @uses $vars['validate'] The validator rules
+ * @uses $vars['validate_messages'] The custom validator messages
  */
 
 

@@ -1,8 +1,12 @@
 <?php
 /**
-*
-* @author Diego Andrés Ramírez Aragón
-* @copyright Corporación Somos más - 2008
+ * Validation framework loading
+ *
+ * @package ElggLibFormUtils
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
+ * @author Diego Andrés Ramírez Aragón <dramirezaragon@gmail.com>
+ * @copyright Diego Andrés Ramírez Aragón 2010
+ * @link http://github.com/lowfill/libform_utils
 */
 if(!defined('VALIDATION_FRAMEWORK')){
     define('VALIDATION_FRAMEWORK','1.0');

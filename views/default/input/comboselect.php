@@ -1,9 +1,11 @@
 <?php
 /**
-*
-* @author Diego Andrés Ramírez Aragón
-* @copyright Corporación Somos más - 2008
-*/
+ * This view transform a simple select in a comboselect view
+ *
+ * @package ElggLibFormUtils
+ * @author Diego Andrés Ramírez Aragón
+ * @link http://github.com/lowfill/libform_utils
+ */
 
 elgg_extend_view("metatags","jquery/comboselect");
 

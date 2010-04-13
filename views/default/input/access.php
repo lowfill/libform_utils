@@ -1,19 +1,19 @@
 <?php
 /**
- * Elgg access level input
+ * Improved Elgg access level input overwrites 'views/default/input/access.php'
  * Displays a pulldown input field
  *
- * @package Elgg
+ * @package ElggLibFormUtils
  * @subpackage Core
-
  * @author Curverider Ltd
-
- * @link http://elgg.org/
+ * @author Diego Andrés Ramírez Aragón
+ * @link http://github.com/lowfill/libform_utils
  *
  * @uses $vars['value'] The current value, if any
  * @uses $vars['js'] Any Javascript to enter into the input tag
  * @uses $vars['internalname'] The name of the input field
- *
+ * @uses $vars['validate'] The validator rules
+ * @uses $vars['validate_messages'] The custom validator messages
  */
 
 $class = "input-access";

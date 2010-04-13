@@ -1,17 +1,19 @@
 <?php
 /**
- * Elgg URL input
- * Displays a URL input field
+ * Elgg URL input overwrite 'views/input/url.php'
+ * Displays a URL input field and if the validation framework is active valid if is a valid URL
  *
- * @package Elgg
+ * @package ElggLibFormUtils
  * @subpackage Core
  * @author Curverider Ltd
- * @link http://elgg.org/
+ * @author Diego Andrés Ramírez Aragón
+ * @link http://github.com/lowfill/libform_utils
  *
  * @uses $vars['value'] The current value, if any
  * @uses $vars['js'] Any Javascript to enter into the input tag
  * @uses $vars['internalname'] The name of the input field
- * @uses $vars['class'] Class override
+ * @uses $vars['validate'] The validator rules
+ * @uses $vars['validate_messages'] The custom validator messages
  */
 
 $class = $vars['class'];

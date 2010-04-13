@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * Validation framework examples page
+ *
+ * @package ElggLibFormUtils
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
+ * @author Diego Andrés Ramírez Aragón <dramirezaragon@gmail.com>
+ * @copyright Diego Andrés Ramírez Aragón 2010
+ * @link http://github.com/lowfill/libform_utils
+ */
 ?>
 <script type="text/javascript">
 $.validator.setDefaults({
@@ -8,8 +16,6 @@ $.validator.setDefaults({
 </script>
 
 <?php
-//FIXME Make a better examples page
-
 $body ="<h2>".elgg_echo("libforms:example:validate")."</h2>";
 $body.='<p>Required';
 $body.=elgg_view('input/text',array('internalname'=>'text1',

@@ -2,8 +2,11 @@
 /**
  * Autosuggest loading
  *
+ * @package ElggLibFormUtils
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Diego Andrés Ramírez Aragón <dramirezaragon@gmail.com>
- * @copyright 2010
+ * @copyright Diego Andrés Ramírez Aragón 2010
+ * @link http://github.com/lowfill/libform_utils
  */
 
 ?>

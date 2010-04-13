@@ -1,7 +1,14 @@
 <?php
+/**
+ * Comboselect examples page
+ *
+ * @package ElggLibFormUtils
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
+ * @author Diego Andrés Ramírez Aragón <dramirezaragon@gmail.com>
+ * @copyright Diego Andrés Ramírez Aragón 2010
+ * @link http://github.com/lowfill/libform_utils
+ */
 
-
-//FIXME Make a better examples page
 $options_values = array(
     "1"=>"Item 1",
     "2"=>"Item 2",

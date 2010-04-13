@@ -1,11 +1,12 @@
 <?php
 /**
- * Create a input button
+ * Create a input button overwrites 'views/default/input/button.php'
  *
- * @package Elgg
+ * @package ElggLibFormUtils
  * @subpackage Core
  * @author Curverider Ltd
- * @link http://elgg.org/
+ * @author Diego Andrés Ramírez Aragón
+ * @link http://github.com/lowfill/libform_utils
  *
  * @uses $vars['value'] The current value, if any
  * @uses $vars['js'] Any Javascript to enter into the input tag
