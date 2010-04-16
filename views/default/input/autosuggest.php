@@ -21,8 +21,8 @@ if(array_key_exists('suggest',$vars)){
         case "groups":
             $suggest_url=$vars['url']."pg/suggest/group";
             break;
-        default:
-            $suggest_url=$vars['suggest'];
+        default:-
+            $suggest_url=$vars['url']."pg/suggest/{$vars['suggest']}";
     }
 }
 
