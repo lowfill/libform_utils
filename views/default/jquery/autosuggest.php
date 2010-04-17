@@ -10,8 +10,6 @@
  */
 
 ?>
-<!--
-<link rel="stylesheet" type="text/css" href="<?php echo $vars['url']?>mod/libform_utils/vendors/jquery-tokeninput/token-inputcss">
- -->
+<link rel="stylesheet" type="text/css" href="<?php echo $vars['url']?>mod/libform_utils/vendors/jquery-tokeninput/token-input.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $vars['url']?>mod/libform_utils/vendors/jquery-tokeninput/token-input-facebook.css">
 <script type="text/javascript" src="<?php echo $vars['url']?>mod/libform_utils/vendors/jquery-tokeninput/jquery.tokeninput.js"></script>
