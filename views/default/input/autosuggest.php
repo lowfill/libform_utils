@@ -8,7 +8,9 @@
  * @copyright 2010
  *
  * @uses $vars['suggest'] To specify what kind of suggestion you wants
+ * @uses $vars['style'] To specify the style of field to be used
  */
+
 elgg_extend_view("metatags","jquery/autosuggest");
 
 echo elgg_view('input/text',$vars);
@@ -25,7 +27,10 @@ if(array_key_exists('suggest',$vars)){
             $suggest_url=$vars['url']."pg/suggest/{$vars['suggest']}";
     }
 }
-
+$style = "";
+if(!empty($vars['style'])){
+    $style=$vars['style'];
+}
 //TODO i18n
 $auto_suggest_defaults=array(
     "hintText"=>"Type in a search term",
@@ -40,16 +45,16 @@ $auto_suggest_defaults=array(
     "queryParam"=>"q",
     "onResult"=>null,
     "classes"=>array(
-                "tokenList"=>"token-input-list-facebook",
-                "token"=>"token-input-token-facebook",
-                "tokenDelete"=>"token-input-delete-token-facebook",
-                "selectedToken"=>"token-input-selected-token-facebook",
-                "highlightedToken"=>"token-input-highlighted-token-facebook",
-                "dropdown"=>"token-input-dropdown-facebook",
-                "dropdownItem"=>"token-input-dropdown-item-facebook",
-                "dropdownItem2"=>"token-input-dropdown-item2-facebook",
-                "selectedDropdownItem"=>"token-input-selected-dropdown-item-facebook",
-                "inputToken"=>"token-input-input-token-facebook"
+                "tokenList"=>"token-input-list{$style}",
+                "token"=>"token-input-token{$style}",
+                "tokenDelete"=>"token-input-delete-token{$style}",
+                "selectedToken"=>"token-input-selected-token{$style}",
+                "highlightedToken"=>"token-input-highlighted-token{$style}",
+                "dropdown"=>"token-input-dropdown{$style}",
+                "dropdownItem"=>"token-input-dropdown-item{$style}",
+                "dropdownItem2"=>"token-input-dropdown-item2{$style}",
+                "selectedDropdownItem"=>"token-input-selected-dropdown-item{$style}",
+                "inputToken"=>"token-input-input-token{$style}"
             )
 );
 
