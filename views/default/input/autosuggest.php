@@ -13,6 +13,10 @@
 
 elgg_extend_view("metatags","jquery/autosuggest");
 
+if(!empty($vars['value'])){
+    $field_value = $vars['value'];
+    $vars['value']="";
+}
 echo elgg_view('input/text',$vars);
 
 if(array_key_exists('suggest',$vars)){
@@ -23,7 +27,7 @@ if(array_key_exists('suggest',$vars)){
         case "groups":
             $suggest_url=$vars['url']."pg/suggest/group";
             break;
-        default:-
+        default:
             $suggest_url=$vars['url']."pg/suggest/{$vars['suggest']}";
     }
 }
@@ -62,6 +66,19 @@ foreach($vars as $key=>$value){
     if(array_key_exists($key,$auto_suggest_defaults)){
         $auto_suggest_defaults[$key]=$value;
     }
+}
+
+if(!empty($field_value)){
+    $values = explode(",",$field_value);
+    $prepopulate = array();
+    foreach($values as $value){
+        $fields = explode("||",$value);
+        if(count($fields)==1){
+            $fields[]=elgg_echo($fields[0]);
+        }
+       $prepopulate[] = array("id"=>$fields[0],"name"=>$fields[1]);
+    }
+    $auto_suggest_defaults['prePopulate']=$prepopulate;
 }
 $opts = json_encode($auto_suggest_defaults);
 ?>
