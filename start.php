@@ -13,9 +13,13 @@
  * libform_utils initialization
  */
 function libform_utils_init(){
-    elgg_extend_view('css','libform/css');
+    extend_view('css','libform/css');
     register_page_handler('libform','libform_page_handler');
     register_page_handler('suggest','suggest_page_handler');
+
+    if(!function_exists('elgg_get_entities')){
+        require_once dirname(__FILE__)."/entities.php";
+    }
 }
 
 /**
@@ -58,7 +62,8 @@ function suggest_page_handler($page){
         $data = array();
         if(!empty($entities)){
             foreach($entities as $entity){
-                $data[]=array('id'=>$entity->guid,'name'=>$entity->name);
+                $name = mb_convert_case($entity->name,MB_CASE_TITLE,'UTF-8');
+                $data[]=array('id'=>$entity->guid,'name'=>$name);
             }
         }
     }

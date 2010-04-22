@@ -11,7 +11,7 @@
  * @uses $vars['style'] To specify the style of field to be used
  */
 
-elgg_extend_view("metatags","jquery/autosuggest");
+extend_view("metatags","jquery/autosuggest");
 
 if(!empty($vars['value'])){
     $field_value = $vars['value'];

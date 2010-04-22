@@ -60,7 +60,7 @@ if (!isset($vars['disable_security']) || $vars['disable_security'] != true) {
 </form>
 <?php
     if($vars['validate']){
-        elgg_extend_view("metatags","jquery/validate");
+        extend_view("metatags","jquery/validate");
         echo elgg_view('input/validator',$vars);
     }
 ?>

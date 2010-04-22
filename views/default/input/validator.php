@@ -10,7 +10,7 @@
  * @uses $vars['iternalname'] Form's name to be validated
  */
 
-elgg_extend_view("metatags","jquery/validate");
+extend_view("metatags","jquery/validate");
 ?>
 <script type="text/javascript">
 $(document).ready(function() {
