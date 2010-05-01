@@ -16,6 +16,9 @@ function libform_utils_init(){
     elgg_extend_view('css','libform/css');
     register_page_handler('libform','libform_page_handler');
     register_page_handler('suggest','suggest_page_handler');
+
+
+    set_include_path(dirname(__FILE__)."/vendors/pear/:".get_include_path());
 }
 
 /**
@@ -88,7 +91,6 @@ function libform_get_validators($validator_str,$messages=""){
     }
     foreach($u_validators as $validator){
         if(empty($validator)) continue;
-        error_log($validator." ".strpos($validator,":"));
         if(strpos($validator,":")>0){
             $validators[]="{$validator}";
         }
@@ -100,6 +102,16 @@ function libform_get_validators($validator_str,$messages=""){
         $validators[]="messages:{".$messages."}";
     }
     return "{".implode(",",$validators)."}";
+}
+function libform_get_countries(){
+    $raw = file(dirname(__FILE__)."/vendors/countries.txt");
+    $countries = array();
+    foreach($raw as $country){
+        $country = explode(";",$country);
+        $countries[$country[0]]=$country[1];
+    }
+    $countries = array_map(elgg_echo,$countries);
+    return $countries;
 }
 register_elgg_event_handler('init','system','libform_utils_init');
 
