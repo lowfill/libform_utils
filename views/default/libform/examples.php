@@ -25,6 +25,7 @@ if(!empty($option)){
   <li><a href="<?php echo $vars['url']."pg/libform/?option=comboselect";?>" <?php echo $comboselect_selected?>><?php echo elgg_echo("libform:comboselect");?></a></li>
   <li><a href="<?php echo $vars['url']."pg/libform/?option=autosuggest";?>" <?php echo $autosuggest_selected?>><?php echo elgg_echo("libform:autosuggest");?></a></li>
   <li><a href="<?php echo $vars['url']."pg/libform/?option=validate";?>" <?php echo $validate_selected?>><?php echo elgg_echo("libform:validate");?></a></li>
+  <li><a href="<?php echo $vars['url']."pg/libform/?option=location";?>" <?php echo $location_selected?>><?php echo elgg_echo("libform:location");?></a></li>
   </ul>
 </div>
 <?php

@@ -23,3 +23,22 @@ div.error { display: none; }
 input:focus { border: 1px dotted black; }
 input.error { border: 1px dotted red; }
 textarea.error { border: 1px dotted red; }
+
+.location_box{
+	margin-left:62px;
+	padding-top:5px
+}
+.location_field{
+	width:150px;
+}
+.location_state_label{
+	margin-left:30px;
+	margin-right:35px
+}
+.location_city_label{
+	margin-left:60px;
+	margin-right:70px
+}
+.location_postal_label{
+	margin-left:60px;
+}

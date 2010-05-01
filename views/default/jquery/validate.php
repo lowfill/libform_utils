@@ -13,6 +13,7 @@ if(!defined('VALIDATION_FRAMEWORK')){
     $current_language=get_language();
 ?>
 <script type="text/javascript" src="<?php echo $vars['url']?>mod/libform_utils/vendors/jquery-validate/jquery.validate.js"></script>
+<script type="text/javascript" src="<?php echo $vars['url']?>mod/libform_utils/vendors/jquery-validate/additional-methods.js" ></script>
 <script type="text/javascript" src="<?php echo $vars['url']?>mod/libform_utils/vendors/jquery-validate/lib/jquery.metadata.js" ></script>
 <?php if($current_language!="en"){?>
 <script type="text/javascript" src="<?php echo $vars['url']?>mod/libform_utils/vendors/jquery-validate/localization/messages_<?php echo $current_language?>.js" ></script>
