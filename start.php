@@ -104,14 +104,20 @@ function libform_get_validators($validator_str,$messages=""){
     return "{".implode(",",$validators)."}";
 }
 function libform_get_countries(){
+    static $countries = array();
     $raw = file(dirname(__FILE__)."/vendors/countries.txt");
-    $countries = array();
-    foreach($raw as $country){
-        $country = explode(";",$country);
-        $countries[$country[0]]=$country[1];
+    if(empty($countries)){
+        foreach($raw as $country){
+            $country = explode(";",$country);
+            $countries[$country[0]]=$country[1];
+        }
+        $countries = array_map(elgg_echo,$countries);
     }
-    $countries = array_map(elgg_echo,$countries);
     return $countries;
+}
+function libform_get_country($code){
+    $countries = libform_get_countries();
+    return $countries[$code];
 }
 register_elgg_event_handler('init','system','libform_utils_init');
 

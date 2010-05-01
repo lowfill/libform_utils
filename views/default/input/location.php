@@ -52,7 +52,7 @@ if(!empty($vars["postal_code"])){
                                       ));
 ?>&nbsp;&nbsp;
 <?php
-    echo elgg_view('input/text',array('internalname'=>"{$name}_postal",
+    echo elgg_view('input/text',array('internalname'=>"{$name}_postal_code",
                                       'class'=>"location_field",
                                       'value'=>$postal_code_value,
                                       'validate'=>"ziprange"));
