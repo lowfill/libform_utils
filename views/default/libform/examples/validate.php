@@ -89,7 +89,6 @@ $body.=elgg_view('input/pulldown',array('internalname'=>'pulldown',
 									 'validate'=>'required'));
 $body.="</p>";
 
-
 $body.=elgg_view('input/submit',array('value'=>'save'));
 
 echo elgg_view('input/form',array('internalname'=>"validator",

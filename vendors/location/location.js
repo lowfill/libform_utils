@@ -5,7 +5,7 @@
 //FIXME Pass this information to the countries file
 function getCountryInfo(name,target,value){
 	default_lang = 'en';
-	$.ajax({
+	jQuery.ajax({
 		url: 'http://ws.geonames.org/countryInfoJSON',
 		dataType:'jsonp',
 		data: {
@@ -33,7 +33,7 @@ function getCountryInfo(name,target,value){
 
 function loadStates(code,target,value){
 	default_lang = 'en';
-	$.ajax({
+	jQuery.ajax({
 		url: 'http://ws.geonames.org/childrenJSON',
 		dataType:'jsonp',
 		data: {
@@ -50,7 +50,7 @@ function loadStates(code,target,value){
 			if (response.geonames && response.geonames.length) {
 				target.empty();
 				target.append("<option value=\"\">"+CHOOSE_ONE+"</option>");
-				$.each(response.geonames, function() {
+				jQuery.each(response.geonames, function() {
 					selected = "";
 					if(value==this.adminName1){
 						selected="selected=\"selected\"";

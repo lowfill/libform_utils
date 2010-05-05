@@ -54,8 +54,7 @@ if(!empty($vars["postal_code"])){
 <?php
     echo elgg_view('input/text',array('internalname'=>"{$name}_postal_code",
                                       'class'=>"location_field",
-                                      'value'=>$postal_code_value,
-                                      'validate'=>"ziprange"));
+                                      'value'=>$postal_code_value));
 ?>&nbsp;&nbsp;
 <br>
 <span class="location_state_label"><?php echo elgg_echo("libform:state")?></span>

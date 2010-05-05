@@ -34,13 +34,35 @@ if(isset($vars['validate'])){
     $class.=" $validators";
 }
 
+$values = $vars['value'];
+if(!is_array($values)){
+    $values = array($values);
+}
+
+$multiple = "";
+if(array_key_exists('multiple',$vars) && $vars['multiple']===true){
+    $multiple="multiple=\"multiple\"";
+    $vars['internalname'].="[]";
+}
+
+$size = "";
+if(array_key_exists('size',$vars) && $vars['size']){
+    $size="size=\"{$vars['size']}\"";
+}
+
 ?>
 
-<select name="<?php echo $vars['internalname']; ?>" <?php echo "id=\"{$internalid}\""; ?> <?php echo $vars['js']; ?> <?php if ($vars['disabled']) echo ' disabled="yes" '; ?> class="<?php echo $class; ?>">
+<select name="<?php echo $vars['internalname']; ?>"
+        <?php echo "id=\"{$internalid}\""; ?>
+        <?php echo $vars['js']; ?>
+        <?php if ($vars['disabled']) echo ' disabled="yes" '; ?>
+        class="<?php echo $class; ?>"
+        <?php echo $multiple;?>
+        <?php echo $size;?>>
 <?php
 if ($vars['options_values']) {
 	foreach($vars['options_values'] as $value => $option) {
-		if ($value != $vars['value']) {
+		if (!in_array($value,$values)) {
 			echo "<option value=\"".htmlentities($value, ENT_QUOTES, 'UTF-8')."\">". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";
 		} else {
 			echo "<option value=\"".htmlentities($value, ENT_QUOTES, 'UTF-8')."\" selected=\"selected\">". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";
@@ -48,7 +70,7 @@ if ($vars['options_values']) {
 	}
 } else {
 	foreach($vars['options'] as $option) {
-		if ($option != $vars['value']) {
+		if (!in_array($value,$values)) {
 			echo "<option>". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";
 		} else {
 			echo "<option selected=\"selected\">". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";
