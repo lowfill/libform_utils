@@ -48,7 +48,7 @@ foreach($vars['options'] as $label => $option) {
     }
     $internalid = $vars['internalid'];
     if(empty($internalid)){
-        $internalid = $vars['internalname'];
+        $internalid = "id=\"{$vars['internalname']}\"";
     }
     $separator = "<br />";
     if(!empty($vars['separator'])){
