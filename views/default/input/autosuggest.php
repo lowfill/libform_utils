@@ -28,7 +28,7 @@ if(array_key_exists('suggest',$vars)){
             $suggest_url=$vars['url']."pg/suggest/group";
             break;
         default:
-            $suggest_url=$vars['url']."pg/suggest/{$vars['suggest']}";
+            $suggest_url=$vars['url']."pg/suggest/{$vars['suggest']}/{$vars['extra_param']}";
     }
 }
 $style = "";

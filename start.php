@@ -67,8 +67,9 @@ function suggest_page_handler($page){
     }
     else{
         $function_name = "{$page[0]}_suggest_hook";
+        $extra_param = (isset($page[1]))?$page[1]:"";
         if(function_exists($function_name)){
-            $data = $function_name($query);
+            $data = $function_name($query,$extra_param);
         }
     }
     header("Content-type: application/json");
