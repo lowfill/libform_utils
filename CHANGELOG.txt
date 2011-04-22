@@ -1,0 +1,8 @@
+Version 0.2
+  Added location field
+
+Version 0.1
+  Initial release
+    - Validation framework
+    - Autosuggest field
+    - Comboselect field
