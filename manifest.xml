@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin_manifest>
 	<field key="author" value="Diego Andrés Ramírez Aragón" />
-	<field key="version" value="0.2" />
-	<field key="description" value="Battery of improvements to form related views&lt;br&gt;- autosuggest field&lt;br&gt;- comboselect field &lt;br&gt;- validation framework" />
+	<field key="version" value="0.3" />
+	<field key="description" value="Improvements to form related views&lt;br&gt;- autosuggest field&lt;br&gt;- comboselect field &lt;br&gt;- validation framework &lt;br&gt;- grid ouput view" />
 	<field key="copyright" value="(C) Diego Andrés Ramírez Aragón 2010" />
 	<field key="website" value="http://github.com/lowfill/libform_utils" />
 	<field key="licence" value="GNU Public License version 2" />
