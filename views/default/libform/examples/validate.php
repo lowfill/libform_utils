@@ -49,16 +49,11 @@ $body.="</p>";
 
 $body.='<p>Password 2';
 $body.=elgg_view('input/password',array('internalname'=>'pass2',
-									 'validate'=>'required;equalTo:pass'));
+									 'validate'=>'equalTo:pass'));
 $body.="</p>";
 
 $body.='<p>Plaintext';
 $body.=elgg_view('input/plaintext',array('internalname'=>'plaintext',
-									 'validate'=>'maxlength:140;required'));
-$body.="</p>";
-
-$body.='<p>Longtext';
-$body.=elgg_view('input/longtext',array('internalname'=>'longtext',
 									 'validate'=>'maxlength:140;required'));
 $body.="</p>";
 
@@ -83,15 +78,23 @@ $body.=elgg_view('input/checkboxes',array('internalname'=>'checkboxes',
                                      'validate_messages'=>'Please select between 2 or three options'));
 $body.="</p>";
 
+/*
 $body.='<p>Pulldown';
 $body.=elgg_view('input/pulldown',array('internalname'=>'pulldown',
 									 'options_values'=>array(''=>'','yes'=>'Yes','no'=>'No','maybe'=>'Maybe','perhaps'=>'Perhaps'),
 									 'validate'=>'required'));
 $body.="</p>";
-
+*/
 $body.=elgg_view('input/submit',array('value'=>'save'));
 
 echo elgg_view('input/form',array('internalname'=>"validator",
                                   'body'=>$body,
                                   'validate'=>true));
 ?>
+<script>
+jQuery(document).ready(function(){
+	jQuery("#validator").submit(function(e){
+		e.preventDefault();
+	});
+});
+</script>

@@ -14,11 +14,10 @@
  */
 function libform_utils_init(){
 	elgg_extend_view('css','libform/css');
-
+	
 	register_page_handler('libform','libform_page_handler');
 	register_page_handler('suggest','suggest_page_handler');
 	register_page_handler('grid','grid_page_handler');
-
 
 	set_include_path(dirname(__FILE__)."/vendors/pear/:".get_include_path());
 }
@@ -79,23 +78,18 @@ function suggest_page_handler($page){
 	exit;
 }
 
+/**
+ * Grid page handler
+ * @param $page
+ */
 function grid_page_handler($page){
-	$data = array();
-	error_log("Aca estamos ".print_r($page,true));
-	if(empty($page[0]) || $page[0]=="grid_example"){
-		$data = array(array("Column 1"));
+	$handler = (isset($page[0]))?$page[0]:"users";
+	$view = "grid/{$handler}_data";
+	if(elgg_view_exists($view)){
 		header("Content-type: application/json");
-		echo json_encode($data);
+		echo elgg_view($view);
 		exit;
-	}
-	else{
-		$view = "grid/{$page[0]}_data";
-		error_log("Buscando $view");
-		if(elgg_view_exists($view)){
-			error_log("Llamando $view");
-			echo elgg_view($view);
-			exit;
-		}
+			
 	}
 }
 /**
