@@ -14,7 +14,8 @@
 	{
 
 		if (t.grid) return false; //return if already exist	
-		
+console.log("Adding flex");
+console.log(p);		
 		// apply default properties
 		p = $.extend({
 			 height: 200, //default height
@@ -30,7 +31,7 @@
 			 errormsg: 'Connection Error',
 			 usepager: false, //
 			 nowrap: true, //
-			 page: 1, //current page
+			 grid_page: 1, //current page
 			 total: 1, //total pages
 			 useRp: true, //use the results per page select box
 			 rp: 15, // results per page
@@ -389,7 +390,7 @@
 					$('tr, a, td, div',t).unbind();
 					$(t).empty();
 					p.pages = 1;
-					p.page = 1;
+					p.grid_page = 1;
 					this.buildpager();
 					$('.pPageStat',this.pDiv).html(p.nomsg);
 					return false;
@@ -398,9 +399,9 @@
 				p.pages = Math.ceil(p.total/p.rp);
 				
 				if (p.dataType=='xml')
-					p.page = +$('rows page',data).text();
+					p.grid_page = +$('rows page',data).text();
 				else
-					p.page = data.page;
+					p.grid_page = data.grid_page;
 				
 				this.buildpager();
 
@@ -559,10 +560,10 @@
 			},
 			buildpager: function(){ //rebuild pager based on new properties
 			
-			$('.pcontrol input',this.pDiv).val(p.page);
+			$('.pcontrol input',this.pDiv).val(p.grid_page);
 			$('.pcontrol span',this.pDiv).html(p.pages);
-			
-			var r1 = (p.page-1) * p.rp + 1; 
+console.log(p);			
+			var r1 = (p.grid_page-1) * p.rp + 1; 
 			var r2 = r1 + p.rp - 1; 
 			
 			if (p.total<r2) r2 = p.total;
@@ -601,10 +602,10 @@
 				
 				if (!p.newp) p.newp = 1;
 				
-				if (p.page>p.pages) p.page = p.pages;
+				if (p.grid_page>p.pages) p.grid_page = p.pages;
 				//var param = {page:p.newp, rp: p.rp, sortname: p.sortname, sortorder: p.sortorder, query: p.query, qtype: p.qtype};
 				var param = [
-					 { name : 'page', value : p.newp }
+					 { name : 'grid_page', value : p.newp }
 					,{ name : 'rp', value : p.rp }
 					,{ name : 'sortname', value : p.sortname}
 					,{ name : 'sortorder', value : p.sortorder }
@@ -640,8 +641,8 @@
 				switch(ctype)
 				{
 					case 'first': p.newp = 1; break;
-					case 'prev': if (p.page>1) p.newp = parseInt(p.page) - 1; break;
-					case 'next': if (p.page<p.pages) p.newp = parseInt(p.page) + 1; break;
+					case 'prev': if (p.grid_page>1) p.newp = parseInt(p.grid_page) - 1; break;
+					case 'next': if (p.grid_page<p.pages) p.newp = parseInt(p.grid_page) + 1; break;
 					case 'last': p.newp = p.pages; break;
 					case 'input': 
 							var nv = parseInt($('.pcontrol input',this.pDiv).val());
@@ -653,7 +654,7 @@
 							break;
 				}
 			
-				if (p.newp==p.page) return false;
+				if (p.newp==p.grid_page) return false;
 				
 				if (p.onChangePage) 
 					p.onChangePage(p.newp);

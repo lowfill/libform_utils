@@ -13,7 +13,7 @@
  */
 
 global $CONFIG;
-$page = get_input('page',1);
+$page = get_input('grid_page',1);
 $rp = get_input('rp',100);
 $sortname = get_input('sortname','e.guid');
 $sortorder = get_input('sortorder','desc');
@@ -53,7 +53,7 @@ if(!empty($entities)){
 }
 
 $data = array(
-	'page'=>$page,
+	'grid_page'=>$page,
 	'total'=>$count,
 	'rows'=>$rows
 );
