@@ -25,6 +25,7 @@ if(array_key_exists('extra_params',$vars)){
 $grid_options = array(
 	'dataType'=>'json',
 	'method'=>'GET',
+
 	'sortname'=>'',
 	'sortorder'=>'desc',
 	'usepager'=>true,
@@ -101,6 +102,7 @@ $options = json_encode($grid_options);
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	$("#<?php echo $placeholder;?>").flexigrid(<?php echo $options?>);   
+	//$("#<?php echo $placeholder;?>").flexigrid();   
 });
 </script>
 
