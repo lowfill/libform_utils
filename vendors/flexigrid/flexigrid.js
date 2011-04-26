@@ -14,8 +14,7 @@
 	{
 
 		if (t.grid) return false; //return if already exist	
-console.log("Adding flex");
-console.log(p);		
+
 		// apply default properties
 		p = $.extend({
 			 height: 200, //default height
@@ -562,7 +561,7 @@ console.log(p);
 			
 			$('.pcontrol input',this.pDiv).val(p.grid_page);
 			$('.pcontrol span',this.pDiv).html(p.pages);
-console.log(p);			
+			
 			var r1 = (p.grid_page-1) * p.rp + 1; 
 			var r2 = r1 + p.rp - 1; 
 			

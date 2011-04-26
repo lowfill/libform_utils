@@ -17,6 +17,13 @@ $language = array(
 	'libform:grid'=>'Grid',
 	'libforms:example:grid'=>'Displaying information in a grid way',
 
+	'libforms:grid:pagestat'=>"Displaying {from} to {to} of {total} items",
+	'libforms:grid:pagetext'=>"Page",
+	'libforms:grid:outof'=>"of",
+	'libforms:grid:findtext'=>"Find",
+	'libforms:grid:procmsg'=>'Processing, please wait ...',
+	'libforms:grid:errormsg'=>"Connection Error",	
+	
 );
 
 add_translation("en",$language);
