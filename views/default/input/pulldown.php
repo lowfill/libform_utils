@@ -70,7 +70,7 @@ if ($vars['options_values']) {
 	}
 } else {
 	foreach($vars['options'] as $option) {
-		if (!in_array($value,$values)) {
+		if (!in_array($option,$values)) {
 			echo "<option>". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";
 		} else {
 			echo "<option selected=\"selected\">". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";
