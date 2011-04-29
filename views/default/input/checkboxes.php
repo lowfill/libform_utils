@@ -20,50 +20,47 @@
 
 $class = $vars['class'];
 if (!$class) {
-    $class = "input-checkboxes";
+	$class = "input-checkboxes";
 }
 if(isset($vars['validate'])){
-    $validators = libform_get_validators($vars['validate']);
+	$validators = libform_get_validators($vars['validate']);
 }
 $i=0;
 
-foreach($vars['options'] as $label => $option) {
-    //if (!in_array($option,$vars['value'])) {
-    if (is_array($vars['value'])) {
-        $valarray = $vars['value'];
-        $valarray = array_map('strtolower', $valarray);
-        if (!in_array(strtolower($option),$valarray)) {
-            $selected = "";
-        } else {
-            $selected = "checked = \"checked\"";
-        }
-    } else {
-        if (strtolower($option) != strtolower($vars['value'])) {
-            $selected = "";
-        } else {
-            $selected = "checked = \"checked\"";
-        }
-    }
-    if($i==0 && !empty($validators)){
-        $class.=" $validators";
-    }
-    $labelint = (int) $label;
-    if ("{$label}" == "{$labelint}") {
-        $label = $option;
-    }
+$valarray = $vars['value'];
+if(!is_array($valarray) && !empty($valarray)){
+	$valarray = array($valarray);
+}
+$valarray = array_map('strtolower', $valarray);
 
-    $internalid = $vars['internalid'];
-    if(empty($internalid)){
-        $internalid = $vars['internalname'];
-    }
-    $disabled = "";
-    if ($vars['disabled']){
-        $disabled = ' disabled="yes" ';
-    }
-    $separator = "<br />";
-    if(!empty($vars['separator'])){
-        $separator = $vars['separator'];
-    }
-    echo "<label><input type=\"checkbox\" $internalid $disabled {$vars['js']} name=\"{$vars['internalname']}[]\" value=\"".htmlentities($option, ENT_QUOTES, 'UTF-8')."\" {$selected} class=\"$class\" />{$label}</label>$separator";
+foreach($vars['options'] as $label => $option) {
+	//if (!in_array($option,$vars['value'])) {
+	$selected = "";
+	if (in_array(strtolower($option),$valarray)) {
+		$selected = "checked = \"checked\"";
+	}
+error_log("$option $selected");
+error_log(print_r($valarray,true));	
+	if($i==0 && !empty($validators)){
+		$class.=" $validators";
+	}
+	$labelint = (int) $label;
+	if ("{$label}" == "{$labelint}") {
+		$label = $option;
+	}
+
+	$internalid = $vars['internalid'];
+	if(empty($internalid)){
+		$internalid = $vars['internalname'];
+	}
+	$disabled = "";
+	if ($vars['disabled']){
+		$disabled = ' disabled="yes" ';
+	}
+	$separator = "<br />";
+	if(!empty($vars['separator'])){
+		$separator = $vars['separator'];
+	}
+	echo "<label><input type=\"checkbox\" $internalid $disabled {$vars['js']} name=\"{$vars['internalname']}[]\" value=\"".htmlentities($option, ENT_QUOTES, 'UTF-8')."\" {$selected} class=\"$class\" />{$label}</label>$separator";
 }
 echo "<label for=\"{$vars['internalname']}[]\" class=\"error\">{$vars['validate_messages']}</label>";
