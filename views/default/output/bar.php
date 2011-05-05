@@ -4,13 +4,20 @@ elgg_extend_view("metatags","jquery/jqcharts");
 $labels = array("'Uno','Dos'");
 $values = array("1,2");
 $size = "400x400";
-$barwidth = "a";
+$barwidth = "r";
 
 if(isset($vars['labels'])){
 	$labels = $vars['labels'];
 }
 if(isset($vars['values'])){
 	$values = $vars['values'];
+}
+if(isset($vars['legends'])){
+	$legends = $vars['legends'];
+}
+$legends_position = "";
+if(isset($vars['legend_position'])){
+	$legends_position = $vars['legend_position'];
 }
 
 if(isset($vars['size'])){
@@ -23,11 +30,11 @@ if(isset($vars['barwidth'])){
 $labels = implode(",",array_map(create_function('$item',"return \"'\".\$item.\"'\";"),$labels));
 $values = implode(",",$values);
 ?>
-<div id="bar_container_<?php echo $vars['internalname']?>" class="<?php echo $vars['class']?>_container">
+<div id="bar_container_<?php echo $vars['internalname']?>" class="<?php echo $vars['class']?>_container bar_container">
 <?php if(isset($vars['title'])){?>
 <h3><?php echo $vars['title']?></h3>
 <?php }?>
-<div id="<?php echo $vars["internalname"]?>" class="<?php echo $vars["class"]?>"></div>
+<div id="<?php echo $vars["internalname"]?>" class="<?php echo $vars["class"]?>">&nbsp;</div>
 
 </div>
 <script type="text/javascript">

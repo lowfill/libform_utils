@@ -11,14 +11,23 @@ if(isset($vars['labels'])){
 if(isset($vars['values'])){
 	$values = $vars['values'];
 }
+if(isset($vars['legends'])){
+	$legends = $vars['legends'];
+}
+$legends_position = "";
+if(isset($vars['legend_position'])){
+	$legends_position = $vars['legend_position'];
+}
 
 if(isset($vars['size'])){
 	$size = $vars["size"];
 }
-$labels = implode(",",array_map(create_function('$item',"return \"'\".\$item.\"'\";"),$labels));
+
+$legends = implode(",",array_map(create_function('$item',"return '\"'.\$item.'\"';"),$legends));
+$labels = implode(",",array_map(create_function('$item',"return '\"'.\$item.'\"';"),$labels));
 $values = implode(",",$values);
 ?>
-<div id="pie_container_<?php echo $vars['internalname']?>" class="<?php echo $vars['class']?>_container">
+<div id="pie_container_<?php echo $vars['internalname']?>" class="<?php echo $vars['class']?>_container pie_container">
 <?php if(isset($vars['title'])){?>
 <h3><?php echo $vars['title']?></h3>
 <?php }?>
@@ -29,11 +38,18 @@ $values = implode(",",$values);
 jQuery(document).ready(function(){
     var api = new jGCharts.Api();
     var labels = [<?php echo $labels?>];
+    var legends = [<?php echo $legends?>];
     var values = [<?php echo $values?>];
-    jQuery('<img>').attr('src', api.make({type:"p",
-        								  size:"<?php echo $size?>",
-                						  axis_labels:labels,
-                						  data:values})).appendTo("#<?php echo $vars["internalname"]?>");
+    var params = {type:"p",size:'<?php echo $size;?>',data:values};
+    if (legends.length > 0){
+        params.legend=legends;
+    	params.legend_position='<?php echo $legends_positions?>';
+    	params.axis_type='';
+    }
+    else{
+        params.axis_labels=labels;
+    }
+    jQuery('<img>').attr('src', api.make(params)).appendTo("#<?php echo $vars["internalname"]?>");
 
 });
 </script>

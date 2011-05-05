@@ -37,6 +37,7 @@ jGCharts.Api = function(){
         axis_range     : "chxr",
         axis_labels    : "chxl",
         legend         : "chdl",
+        legend_position: "chdlp",
         bar_width      : "chbh",
         background     : "chf",
         fillarea       : "chm",//TODO : marker range & marker shape
@@ -70,6 +71,9 @@ jGCharts.Api = function(){
     var _data = false;
     //  legend default value
     var _legend = false;
+
+    //  legend default value
+    var _legend_position = "right";
     
     //  axis labels default value
     var _axis_labels = [];
@@ -165,6 +169,20 @@ jGCharts.Api = function(){
         _ret = _rlasttrim(_ret,"|");
         //console.log("legend:" + _ret);
         return _ret; 
+    }
+   
+    function _eval_legend_position(){
+    	var _ret="";
+    	if (_legend_position=="left"){
+    		_ret="l";
+    	}
+    	else if (_legend_position=="top"){
+    		_ret="t";
+    	}
+    	else if (_legend_position=="bottom"){
+    		_ret="b";
+    	}
+    	return _ret;
     }
     // Chart data
     // chd=t:<chart data string>
@@ -514,7 +532,7 @@ jGCharts.Api = function(){
     		_filltop = options.filltop;		
     		
     	//axis - TODO?
-    	if(options.axis_type)
+    	if(options.axis_type!=null)
     		_axis_type = options.axis_type;
     		
     	//style 
@@ -542,7 +560,9 @@ jGCharts.Api = function(){
     		_chbg_angle = options.chbg_angle;
     	if(options.chbg_trasparency)
     		_chbg_trasparency = options.chbg_trasparency;
-    		
+    	if(options.legend_position)
+    		_legend_position = options.legend_position;
+    	
     	//grid
     	if(options.grid){
     		_grid = options.grid;	
@@ -602,10 +622,13 @@ jGCharts.Api = function(){
             if(_is_bar){
 				url += _param("bar_width", _bar_options());
             }
-            
+
             url += _param("axis_type", _axis_type);
-            if(!_is_pie && _legend.length > 0)
-				url += _param("legend", _eval_legend());
+            
+            if(_legend.length > 0){
+            	url += _param("legend", _eval_legend());
+				url += _param("legend_position", _eval_legend_position());
+            }
             
             url += _param("data", _eval_data());
             url += _param("scaling", _scaling());
