@@ -4,6 +4,12 @@
  * 
  * This view uses Flexigrid (http://flexigrid.info/) to display data in a AJAX way
  * 
+ * @package ElggLibFormUtils
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
+ * @author Diego Andrés Ramírez Aragón <dramirezaragon@gmail.com>
+ * @copyright Diego Andrés Ramírez Aragón 2011
+ * @link http://github.com/lowfill/libform_utils
+ * 
  * @param $vars['internalname']
  * @param $vars['endpoint'] Data source to be called. The name is used for display a view 'grid/<endpoint>_data. See libform_utils/views/default/grid/* for examples
  * @param $vars['extra_params'] Extra params for filter data

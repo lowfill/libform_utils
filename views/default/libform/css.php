@@ -42,3 +42,7 @@ textarea.error { border: 1px dotted red; }
 .location_postal_label{
 	margin-left:60px;
 }
+
+.time_line_container td{
+  	font-size:1.1em;
+}

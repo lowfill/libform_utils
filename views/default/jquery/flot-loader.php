@@ -1,6 +1,6 @@
 <?php
 /**
- * jGCharts (http://maxb.net/scripts/jgcharts/include/demo/) loader
+ * Flot (http://code.google.com/p/flot/) plugins loader
  * 
  * @package ElggLibFormUtils
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
@@ -10,5 +10,13 @@
  * 
  */
 
+if(is_array($vars["flot_modules"])){
+	foreach($vars["flot_modules"] as $module){
 ?>
-<script type="text/javascript" src="<?php echo $vars["url"];?>mod/libform_utils/vendors/jgcharts/jgcharts.js"></script>
+
+<script type="text/javascript" src="<?php echo $vars["url"];?>mod/libform_utils/vendors/flot/jquery.flot.<?php echo $module?>.js"></script>
+
+<?php
+	} 
+}
+?>

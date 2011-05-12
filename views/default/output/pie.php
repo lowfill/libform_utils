@@ -1,4 +1,23 @@
 <?php
+/**
+ * Pie graph output view or Elgg
+ * 
+ * This view uses jGCharts (http://maxb.net/scripts/jgcharts/include/demo/) to display data
+ * 
+ * @package ElggLibFormUtils
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
+ * @author Diego Andrés Ramírez Aragón <dramirezaragon@gmail.com>
+ * @copyright Diego Andrés Ramírez Aragón 2011
+ * @link http://github.com/lowfill/libform_utils
+ * 
+ * @param $vars['internalname']
+ * @param $vars['labels']
+ * @param $vars['values']
+ * @param $vars['legends']
+ * @param $vars['legend_position'] 
+ * @param $vars['size']
+ */
+
 elgg_extend_view("metatags","jquery/jqcharts");
 
 $labels = array("'Uno','Dos'");

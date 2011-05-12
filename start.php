@@ -18,6 +18,7 @@ function libform_utils_init(){
 	register_page_handler('libform','libform_page_handler');
 	register_page_handler('suggest','suggest_page_handler');
 	register_page_handler('grid','grid_page_handler');
+	register_page_handler('timeline','timeline_page_handler');
 
 	set_include_path(dirname(__FILE__)."/vendors/pear/:".get_include_path());
 }
@@ -93,6 +94,21 @@ function grid_page_handler($page){
 	}
 }
 /**
+ * Timeline page handler
+ * @param $page
+ */
+function timeline_page_handler($page){
+	$handler = (isset($page[0]))?$page[0]:"users";
+	$view = "timeline/{$handler}_data";
+	if(elgg_view_exists($view)){
+		header("Content-type: application/json");
+		echo elgg_view($view);
+		exit;
+			
+	}
+}
+
+/**
  * Get the list of validators and messages from an string
  *
  * @param string $validator_str ';' separated validators string
@@ -119,6 +135,7 @@ function libform_get_validators($validator_str,$messages=""){
 	}
 	return "{".implode(",",$validators)."}";
 }
+
 function libform_get_countries(){
 	static $countries = array();
 	$raw = file(dirname(__FILE__)."/vendors/countries.txt");
@@ -135,6 +152,7 @@ function libform_get_country($code){
 	$countries = libform_get_countries();
 	return $countries[$code];
 }
+
 register_elgg_event_handler('init','system','libform_utils_init');
 
 ?>

@@ -24,6 +24,7 @@ $language = array(
 	'libforms:grid:procmsg'=>'Processing, please wait ...',
 	'libforms:grid:errormsg'=>"Connection Error",	
 	
+	'libforms:timeline:series:title'=>"Series",
 );
 
 add_translation("en",$language);
