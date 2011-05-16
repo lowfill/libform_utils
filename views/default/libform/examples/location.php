@@ -13,13 +13,17 @@
 echo "<form>";
 echo "<h2>".elgg_echo("libforms:example:location")."</h2>";
 echo elgg_view('input/location',array('internalname'=>"location"));
-echo "<div class=\"clearfloat\"></div>";
+echo "<div class=\"clearfloat\"></div><br>";
 echo elgg_view('input/location',array('internalname'=>"location_values",
                                       'country'=>"US",
                                       'state'=>"Alaska",
                                       'city'=>"Yukon",
                 ));
+echo "<div class=\"clearfloat\"></div><br>";
 
+echo elgg_view('input/location',array('internalname'=>"location_value",
+                                      'value'=>"US||Alaska||Yukon"));
+                
 echo "</form>";
 
 ?>

@@ -7,30 +7,33 @@ $default_option = array(""=>elgg_echo("libform:choose_one"));
 $countries = array_merge($default_option,$countries);
 
 $name = $vars['internalname'];
+$value = $vars['value'];
+list($country_value,$state_value,$city_value,$postal_code_value) = explode("||",$value);
 
-$country_value = "";
 if(!empty($vars["country"])){
     $country_value = $vars['country'];
 }
 
-$state_value = "";
 if(!empty($vars["state"])){
     $state_value = $vars['state'];
 }
 
-$city_value = "";
 if(!empty($vars["city"])){
     $city_value = $vars['city'];
 }
 
-$postal_code_value = "";
 if(!empty($vars["postal_code"])){
     $postal_code_value = $vars['postal_code'];
 }
 
+$enable_postal_code = false;
+if(!empty($vars["enable_postal_code"])){
+	$enable_postal_code = $vars['enable_postal_code'];
+}
+
 ?>
 
-<div class="location">
+<div class="location" id="location_field_<?php echo $name;?>">
 <?php echo elgg_echo('libform:country')?>:
 <?php echo elgg_view('input/pulldown',array('internalname'=>"{$name}_country",
 											'options_values'=>$countries,
@@ -39,6 +42,12 @@ if(!empty($vars["postal_code"])){
 ?>
 <br>
 <div class="location_box">
+<span class="location_state_label"><?php echo elgg_echo("libform:state")?></span>
+<span class="location_city_label"><?php echo elgg_echo("libform:city")?></span>
+<?php if($enable_postal_code){?>
+<span class="location_postal_label"><?php echo elgg_echo("libform:postal_code")?></span>
+<?php }?>
+<br>
 <?php
     echo elgg_view('input/pulldown',array('internalname'=>"{$name}_state",
                                           'class'=>"location_field",
@@ -51,17 +60,18 @@ if(!empty($vars["postal_code"])){
                                       'value'=>$city_value,
                                       ));
 ?>&nbsp;&nbsp;
+<?php if($enable_postal_code){?>
 <?php
     echo elgg_view('input/text',array('internalname'=>"{$name}_postal_code",
                                       'class'=>"location_field",
                                       'value'=>$postal_code_value));
 ?>&nbsp;&nbsp;
-<br>
-<span class="location_state_label"><?php echo elgg_echo("libform:state")?></span>
-<span class="location_city_label"><?php echo elgg_echo("libform:city")?></span>
-<span class="location_postal_label"><?php echo elgg_echo("libform:postal_code")?></span>
+<?php }?>
 </div>
 </div>
+<?php 
+	echo elgg_view("input/hidden",array('internalname'=>$name,'value'=>$value,'internalid'=>$name));
+?>
 <script>
 jQuery(document).ready(function(){
 	var target = jQuery("#<?php echo $name?>_state");
@@ -75,5 +85,13 @@ jQuery(document).ready(function(){
 	<?php
 	}
     ?>
+	jQuery(".location_field",jQuery("#location_field_<?php echo $name;?>")).change(function(){
+		var value = jQuery("#<?php echo $name?>_country").val()+"||"+jQuery("#<?php echo $name?>_state").val();
+		value+="||"+jQuery("#<?php echo $name?>_city").val();
+		<?php if($enable_postal_code){?>
+		value+="||"+jQuery("#<?php echo $name?>_postal_code").val();
+		<?php }?>
+		jQuery("#<?php echo $name?>").val(value);
+	});
 });
 </script>

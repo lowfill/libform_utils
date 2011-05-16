@@ -10,5 +10,14 @@
  * @copyright Diego Andrés Ramírez Aragón 2011
  * @link http://github.com/lowfill/libform_utils
  */
-echo $vars['value'];
+list($country_value,$state_value,$city_value,$postal_code_value) = explode("||",$vars['value']);
+$country_value = elgg_echo("libforms:{$country_value}");
+echo "$country_value, $state_value";
+if(!empty($city_value)){
+	echo ", $city_value";
+}
+
+if(!empty($postal_code_value)){
+	echo "  $postal_code_value";
+}
 ?>
