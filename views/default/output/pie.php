@@ -20,6 +20,7 @@
 
 elgg_extend_view("metatags","jquery/jqcharts");
 
+$legends = array();
 $labels = array("'Uno','Dos'");
 $values = array("1,2");
 $size = "350x100";
