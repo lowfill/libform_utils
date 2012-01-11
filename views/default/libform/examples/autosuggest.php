@@ -24,6 +24,13 @@ echo elgg_view('input/autosuggest',array('internalname'=>'group_id',
                                             'minChars'=>2,
                                             'tokenLimit'=>1));
 
+echo "</p><p>Groups (Facebook)";
+echo elgg_view('input/autosuggest',array('internalname'=>'group_id-fb',
+                                            'internalid'=>'group_id-fb',
+                                            'suggest'=>'groups',
+                                            'minChars'=>2,
+                                            'style'=>'-facebook'));
+
 echo "</p></form>";
 
 ?>

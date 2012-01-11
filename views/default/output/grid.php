@@ -18,7 +18,9 @@
  */
 global $CONFIG;
 
-elgg_extend_view('metatags','jquery/flexigrid');
+elgg_load_css("libform:css");
+elgg_load_css("libform:grid");
+elgg_load_js("libform:grid");
 
 $placeholder = (array_key_exists('internalname',$vars))?$vars['internalname']:'grid';
 $endpoint = (array_key_exists('endpoint',$vars)) ? $vars['endpoint'] : 'users';
@@ -27,7 +29,6 @@ if(array_key_exists('extra_params',$vars)){
 	$url = elgg_http_add_url_query_elements($url,$vars['extra_params']);
 }
 
-//TODO i18n
 $grid_options = array(
 	'dataType'=>'json',
 	'method'=>'GET',

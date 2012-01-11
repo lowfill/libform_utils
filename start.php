@@ -13,22 +13,52 @@
  * libform_utils initialization
  */
 function libform_utils_init(){
-	elgg_extend_view('css','libform/css');
+	$root = dirname(__FILE__);
+	$url_root = elgg_get_site_url()."mod/libform_utils";
 	
-	register_page_handler('libform','libform_page_handler');
-	register_page_handler('suggest','suggest_page_handler');
-	register_page_handler('grid','grid_page_handler');
-	register_page_handler('timeline','timeline_page_handler');
+	//Register css and javascripts
+	elgg_register_css("libform:css","$url_root/css/libform.css");
+	// Comboselect
+	elgg_register_css("libform:comboselect","$url_root/vendors/jquery-comboselect/jquery-comboselect.css");
+	elgg_register_js("libform:comboselect", "$url_root/vendors/jquery-comboselect/jquery-comboselect.js");
+	// Autosuggest
+	elgg_register_css("libform:autosuggest","$url_root/vendors/jquery-tokeninput/token-input.css");
+	elgg_register_css("libform:autosuggest:facebook","$url_root/vendors/jquery-tokeninput/token-input-facebook.css");
+	elgg_register_js("libform:autosuggest","$url_root/vendors/jquery-tokeninput/jquery.tokeninput.js");
+	// Location
+	elgg_register_js("libform:location:i18n","$url_root/vendors/location/location.php");
+	elgg_register_js("libform:location","$url_root/vendors/location/location.js");
+	// Flexigrid
+	elgg_register_css("libform:grid","$url_root/vendors/flexigrid/css/flexigrid/flexigrid.css");
+	elgg_register_js("libform:grid","$url_root/vendors/flexigrid/flexigrid.js");
+	// Validator
+	elgg_register_js("libform:validator","$url_root/vendors/jquery-validate/jquery.validate.js");
+	elgg_register_js("libform:validator:aditional","$url_root/vendors/jquery-validate/additional-methods.js");
+	elgg_register_js("libform:validator:metadata","$url_root/vendors/jquery-validate/lib/jquery.metadata.js");
+	$current_language = get_language();
+	if($current_language != "en" && file_exists("$root/vendors/jquery-validate/localization/messages_{$current_language}.js")){
+		elgg_register_js("libform:validator:i18n","$url_root/vendors/jquery-validate/localization/messages_{$current_language}.js");
+	}
+	
+	//Register handlers
+	elgg_register_page_handler('libform','libform_page_handler');
+	elgg_register_page_handler('suggest','suggest_page_handler');
+	elgg_register_page_handler('grid','grid_page_handler');
+	elgg_register_page_handler('timeline','timeline_page_handler');
 
 	set_include_path(dirname(__FILE__)."/vendors/pear/:".get_include_path());
 }
 
 /**
  * libform_utils page handler
+ * @todo Implements this
  * @param $page
  */
 function libform_page_handler($page){
-	include dirname(__FILE__)."/examples.php";
+	$pages = dirname(__FILE__)."/pages/libform";
+	include "$pages/examples.php";
+	elgg_pop_context();
+	return true;
 }
 
 /**
@@ -153,6 +183,6 @@ function libform_get_country($code){
 	return $countries[$code];
 }
 
-register_elgg_event_handler('init','system','libform_utils_init');
+elgg_register_event_handler('init','system','libform_utils_init');
 
 ?>

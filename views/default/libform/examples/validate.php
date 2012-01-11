@@ -69,22 +69,46 @@ $body.=elgg_view('input/radio',array('internalname'=>'radio',
                                      'validate'=>'required',
                                      'validate_messages'=>'Please select yes or no'));
 $body.="</p>";
+$body.='<p>Radio Horizontal';
+$body.=elgg_view('input/radio',array('internalname'=>'radio',
+									 'options'=>array('Yes'=>'yes','No'=>'no'),
+                                     'validate'=>'required',
+                                     'align'=>'horizontal',
+                                     'validate_messages'=>'Please select yes or no'));
+$body.="</p>";
 
 $body.='<p>Checkbox';
 $body.=elgg_view('input/checkboxes',array('internalname'=>'checkboxes',
 									 'options'=>array('Yes'=>'yes','No'=>'no','Maybe'=>'maybe','Perhaps'=>'perhaps'),
-                                     'separator'=>"&nbsp;",
+                                     'validate'=>'required;rangelength:[2,3]',
+                                     'validate_messages'=>'Please select between 2 or three options'));
+$body.="</p>";
+$body.='<p>Checkbox Horizontal';
+$body.=elgg_view('input/checkboxes',array('internalname'=>'checkboxes2',
+									 'options'=>array('Yes'=>'yes','No'=>'no','Maybe'=>'maybe','Perhaps'=>'perhaps'),
+									 'align'=>'horizontal',
                                      'validate'=>'required;rangelength:[2,3]',
                                      'validate_messages'=>'Please select between 2 or three options'));
 $body.="</p>";
 
-/*
+
 $body.='<p>Pulldown';
-$body.=elgg_view('input/pulldown',array('internalname'=>'pulldown',
-									 'options_values'=>array(''=>'','yes'=>'Yes','no'=>'No','maybe'=>'Maybe','perhaps'=>'Perhaps'),
-									 'validate'=>'required'));
+$body.=elgg_view('input/pulldown',array('internalname'=>'pulldown2',
+									 'options_values'=>array('yes'=>'Yes','no'=>'No','maybe'=>'Maybe','perhaps'=>'Perhaps'),
+									 'multiple'=>true,
+									 'value'=>array('yes','maybe'),
+									 'size'=>'4',
+									 'validate'=>'required;rangelength:[2,3]',
+                                     'validate_messages'=>'Please select between 2 or three options'));
 $body.="</p>";
-*/
+
+$body.='<p>Tags';
+$body.=elgg_view('input/tags',array('internalname'=>'tags',
+									 'value'=>array('Yes','No','Maybe','Perhaps'),
+									 'size'=>'4',
+									 'validate'=>'required',));
+$body.="</p>";
+
 $body.=elgg_view('input/submit',array('value'=>'save'));
 
 echo elgg_view('input/form',array('internalname'=>"validator",
