@@ -18,84 +18,71 @@
  * @uses $vars['validate_messages'] The custom validator messages
  */
 
-$class = (isset($vars['class'])) ? $vars['class'] : 'input-checkboxes';
-$value = (isset($vars['value'])) ? $vars['value'] : NULL;
-$value_array = (is_array($value)) ? array_map('strtolower', $value) : array(strtolower($value));
-$internalname = (isset($vars['internalname'])) ? $vars['internalname'] : '';
-$options = (isset($vars['options']) && is_array($vars['options'])) ? $vars['options'] : array();
-$default = (isset($vars['default'])) ? $vars['default'] : 0;
 
-$id = (isset($vars['internalid'])) ? $vars['internalid'] : '';
-$disabled = (isset($vars['disabled'])) ? $vars['disabled'] : FALSE;
-$js = (isset($vars['js'])) ? $vars['js'] : '';
 if(isset($vars['validate'])){
 	$validators = libform_get_validators($vars['validate']);
 }
 
-if ($options) {
-	// include a default value so if nothing is checked 0 will be passed.
-	if ($internalname) {
-		echo "<input type=\"hidden\" name=\"$internalname\" value=\"$default\">";
-	}
+$defaults = array(
+	'align' => 'vertical',
+	'value' => array(),
+	'default' => 0,
+	'disabled' => false,
+	'options' => array(),
+	'name' => '',
+);
 
-	$i=0;
-	foreach($options as $label => $option) {
-		// @hack - This sorta checks if options is not an assoc array and then
-		// ignores the label (because it's just the index) and sets the value ($option)
-		// as the label.
-		// Wow.
-		// @todo deprecate in Elgg 1.8
-		if (is_integer($label)) {
-			$label = $option;
-		}
+$vars = array_merge($defaults, $vars);
 
-		if (!in_array(strtolower($option), $value_array)) {
-			$selected = FALSE;
-		} else {
-			$selected = TRUE;
-		}
-
-		$attr = array(
-			'type="checkbox"',
-			'value="' . htmlentities($option, ENT_QUOTES, 'UTF-8') . '"'
-			);
-
-			if ($id) {
-				$attr[] = "id=\"$id\"";
-			}
-
-			if($i==0 && !empty($validators)){
-				$class.=" $validators";
-			}
-			if ($class) {
-				$attr[] = "class=\"$class\"";
-			}
-
-			if ($disabled) {
-				$attr[] = 'disabled="yes"';
-			}
-
-			if ($selected) {
-				$attr[] = 'checked = "checked"';
-			}
-
-			if ($js) {
-				$attr[] = $js;
-			}
-
-			if ($internalname) {
-				// @todo this really, really should only add the []s if there are > 1 element in options.
-				$attr[] = "name=\"{$internalname}[]\"";
-			}
-			$separator = "<br />";
-			if(!empty($vars['separator'])){
-				$separator = $vars['separator'];
-			}
-				
-			$attr_str = implode(' ', $attr);
-			$i++;
-			echo "<label><input $attr_str />$label</label>$separator";
-	}
+$class = "elgg-input-checkboxes elgg-{$vars['align']}";
+if (isset($vars['class'])) {
+	$class .= " {$vars['class']}";
+	unset($vars['class']);
 }
 
-echo "<label for=\"{$vars['internalname']}[]\" class=\"error\">{$vars['validate_messages']}</label>";
+$id = '';
+if (isset($vars['id'])) {
+	$id = "id=\"{$vars['id']}\"";
+	unset($vars['id']);
+}
+
+if (is_array($vars['value'])) {
+	$values = array_map('elgg_strtolower', $vars['value']);
+} else {
+	$values = array(elgg_strtolower($vars['value']));
+}
+
+$input_vars = $vars;
+$input_vars['default'] = false;
+if ($vars['name']) {
+	$input_vars['name'] = "{$vars['name']}[]";
+}
+unset($input_vars['align']);
+unset($input_vars['options']);
+
+if (count($vars['options']) > 0) {
+	// include a default value so if nothing is checked 0 will be passed.
+	if ($vars['name'] && $vars['default'] !== false) {
+		echo "<input type=\"hidden\" name=\"{$vars['name']}\" value=\"{$vars['default']}\" />";
+	}
+
+	echo "<ul class=\"$class\" $id>";
+	foreach ($vars['options'] as $label => $value) {
+		// @deprecated 1.8 Remove in 1.9
+		if (is_integer($label)) {
+			elgg_deprecated_notice('$vars[\'options\'] must be an associative array in input/checkboxes', 1.8);
+			$label = $value;
+		}
+
+		$input_vars['checked'] = in_array(elgg_strtolower($value), $values);
+		$input_vars['value']   = $value;
+
+		$input = elgg_view('input/checkbox', $input_vars);
+
+		echo "<li><label>$input$label</label></li>";
+	}
+	echo '</ul>';
+}
+
+
+echo "<label for=\"{$vars['name']}[]\" class=\"error\">{$vars['validate_messages']}</label>";

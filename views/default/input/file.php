@@ -23,25 +23,27 @@ if (!empty($vars['value'])) {
 	echo elgg_echo('fileexists') . "<br />";
 }
 
-$class = "input-file";
 if (isset($vars['class'])) {
-	$class = $vars['class'];
+	$vars['class'] = "elgg-input-file {$vars['class']}";
+} else {
+	$vars['class'] = "elgg-input-file";
 }
 
-$disabled = false;
-if (isset($vars['disabled'])) {
-	$disabled = $vars['disabled'];
-}
+$defaults = array(
+	'disabled' => false,
+	'size' => 30,
+);
 
 $internalid = $vars['internalid'];
 if(empty($internalid)){
-    $internalid = $vars['internalname'];
+    $vars['internalid'] = $vars['internalname'];
 }
 
 if(isset($vars['validate'])){
     $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
-    $class.=" $validators";
+    $vars['class'].=" $validators";
 }
+$attrs = array_merge($defaults, $vars);
 
 ?>
-<input type="file" size="30" <?php echo $vars['js']; ?> name="<?php echo $vars['internalname']; ?>" <?php echo "id=\"{$internalid}\""; ?> <?php if ($disabled) echo ' disabled="yes" '; ?> class="<?php echo $class; ?>" />
+<input type="file" <?php echo elgg_format_attributes($attrs); ?> />

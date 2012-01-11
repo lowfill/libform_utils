@@ -19,8 +19,8 @@
 
 $internalid = $vars['internalid'];
 if(empty($internalid)){
-    $internalid = $vars['internalname'];
+    $vars['internalid'] = $vars['internalname'];
 }
 
 ?>
-<input type="hidden" <?php echo $vars['js']; ?> name="<?php echo $vars['internalname']; ?>" <?php echo "id=\"{$internalid}\""; ?> value="<?php echo htmlentities($vars['value'], ENT_QUOTES, 'UTF-8'); ?>" />
+<input type="hidden" <?php echo elgg_format_attributes($vars); ?> />

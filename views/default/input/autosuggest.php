@@ -11,7 +11,9 @@
  * @uses $vars['style'] To specify the style of field to be used
  */
 
-elgg_extend_view("metatags","jquery/autosuggest");
+elgg_load_css("libform:css");
+elgg_load_css("libform:autosuggest");
+elgg_load_js("libform:autosuggest");
 
 if(!empty($vars['value'])){
     $field_value = $vars['value'];
@@ -34,6 +36,9 @@ if(array_key_exists('suggest',$vars)){
 $style = "";
 if(!empty($vars['style'])){
     $style=$vars['style'];
+    if(strstr($style, "facebook")!==0){
+    	elgg_load_css("libform:autosuggest:facebook");
+    }
 }
 //TODO i18n
 $auto_suggest_defaults=array(

@@ -1,6 +1,8 @@
 <?php
 
-elgg_extend_view("metatags","jquery/location");
+elgg_load_css("libform:css");
+elgg_load_js("libform:location:i18n");
+elgg_load_js("libform:location");
 
 $countries = libform_get_countries();
 $default_option = array(""=>elgg_echo("libform:choose_one"));

@@ -10,7 +10,12 @@
  * @uses $vars['iternalname'] Form's name to be validated
  */
 
-elgg_extend_view("metatags","jquery/validate");
+elgg_load_css("libform:css");
+elgg_load_js("libform:validator");
+elgg_load_js("libform:validator:aditional");
+elgg_load_js("libform:validator:metadata");
+elgg_load_js("libform:validator:i18n");
+
 ?>
 <script type="text/javascript">
 $(document).ready(function() {

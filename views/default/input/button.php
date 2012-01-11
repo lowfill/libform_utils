@@ -20,51 +20,37 @@
 global $CONFIG;
 
 if (isset($vars['class'])) {
-	$class = $vars['class'];
+	$vars['class'] = "elgg-button {$vars['class']}";
 } else {
-	$class = "submit_button";
+	$vars['class'] = "elgg-button";
 }
 
-// defaults to submit button
-if (isset($vars['type'])) {
-	$type = strtolower($vars['type']);
-} else {
-	$type = 'submit';
-}
+$defaults = array(
+	'type' => 'button',
+);
 
-switch ($type) {
-	case 'button' :
-		$type='button';
-		break;
-	case 'reset' :
-		$type='reset';
-		break;
+$vars = array_merge($defaults, $vars);
+
+switch ($vars['type']) {
+	case 'button':
+	case 'reset':
 	case 'submit':
+	case 'image':
+		break;
 	default:
-		$type = 'submit';
+		$vars['type'] = 'button';
+		break;
 }
 
-$value = htmlentities($vars['value'], ENT_QUOTES, 'UTF-8');
-
-$name = '';
-if (isset($vars['internalname'])) {
-	$name = $vars['internalname'];
-}
-
-$src = '';
-if (isset($vars['src'])) {
-	$src = "src=\"{$vars['src']}\"";
-}
-// blank src if trying to access an offsite image.
-if (strpos($src,$CONFIG->wwwroot)===false) {
-	$src = "";
+// blank src if trying to access an offsite image. @todo why?
+if (isset($vars['src']) && strpos($vars['src'], elgg_get_site_url()) === false) {
+	$vars['src'] = "";
 }
 
 $internalid = $vars['internalid'];
 if(empty($internalid)){
-    $internalid = $vars['internalname'];
+    $vars['internalid'] = $vars['internalname'];
 }
 
 ?>
-
-<input name="<?php echo $name; ?>" <?php echo "id=\"{$internalid}\""; ?> type="<?php echo $type; ?>" class="<?php echo $class; ?>" <?php echo $vars['js']; ?> value="<?php echo $value; ?>" <?php echo $src; ?> />
+<input <?php echo elgg_format_attributes($vars); ?> />

@@ -20,25 +20,26 @@
 
 
 if (isset($vars['class'])) {
-	$class = $vars['class'];
+	$vars['class'] = "elgg-input-text {$vars['class']}";
 } else {
-	$class = "input-text";
+	$vars['class'] = "elgg-input-text";
 }
 
-$disabled = false;
-if (isset($vars['disabled'])) {
-	$disabled = $vars['disabled'];
-}
+$defaults = array(
+	'value' => '',
+	'disabled' => false,
+);
+
+$vars = array_merge($defaults, $vars);
 
 $internalid = $vars['internalid'];
 if(empty($internalid)){
-    $internalid = $vars['internalname'];
+    $vars['internalid'] = $vars['internalname'];
 }
 
 if(isset($vars['validate'])){
     $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
-    $class.=" $validators";
+    $vars['class'].=" $validators";
 }
 ?>
-
-<input type="text" <?php if ($disabled) echo ' disabled="yes" '; ?> <?php echo $vars['js']; ?> name="<?php echo $vars['internalname']; ?>" <?php echo "id=\"{$internalid}\""; ?> value="<?php echo htmlentities($vars['value'], ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo $class ?>"/>
+<input type="text" <?php echo elgg_format_attributes($vars); ?> />

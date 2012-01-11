@@ -7,7 +7,9 @@
  * @link http://github.com/lowfill/libform_utils
  */
 
-elgg_extend_view("metatags","jquery/comboselect");
+elgg_load_css("libform:css");
+elgg_load_css("libform:comboselect");
+elgg_load_js("libform:comboselect");
 
 //FIXME Implements automatic validator for this kind of field
 if(isset($vars['validate'])){
