@@ -31,15 +31,10 @@ $vars = array_merge($defaults, $vars);
 $default = $vars['default'];
 unset($vars['default']);
 
-if(isset($vars['validate'])){
-	$validators = libform_get_validators($vars['validate']);
-	$vars['class'].=" $validators";
-}
 
 if (isset($vars['name']) && $default !== false) {
 	echo "<input type=\"hidden\" name=\"{$vars['name']}\" value=\"$default\"/>";
 }
-unset($vars['validate_messages']);
-unset($vars['validate']);
+$vars = libform_format_attributes($vars,'checkbox');
 ?>
 <input type="checkbox" <?php echo elgg_format_attributes($vars); ?> />

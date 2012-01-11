@@ -60,6 +60,7 @@ if ($vars['name']) {
 unset($input_vars['align']);
 unset($input_vars['options']);
 
+$validate_messages = $vars['validate_messages'];
 if (count($vars['options']) > 0) {
 	// include a default value so if nothing is checked 0 will be passed.
 	if ($vars['name'] && $vars['default'] !== false) {
@@ -85,4 +86,4 @@ if (count($vars['options']) > 0) {
 }
 
 
-echo "<label for=\"{$vars['name']}[]\" class=\"error\">{$vars['validate_messages']}</label>";
+echo "<label for=\"{$vars['name']}[]\" class=\"error\">{$validate_messages}</label>";

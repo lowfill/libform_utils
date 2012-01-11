@@ -17,10 +17,6 @@
  * @uses $vars['validate_messages'] The custom validator messages
  */
 
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-    $vars['internalid'] = $vars['internalname'];
-}
-
+$vars = libform_format_attributes($vars);
 ?>
 <input type="hidden" <?php echo elgg_format_attributes($vars); ?> />

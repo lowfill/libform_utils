@@ -17,7 +17,7 @@
  * @param $vars['legend_position'] 
  * @param $vars['size']
  */
-
+// FIXME update to 1.8
 elgg_extend_view("metatags","jquery/jqcharts");
 
 $legends = array();

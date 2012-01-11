@@ -52,11 +52,8 @@ unset($vars['options']);
 $value = $vars['value'];
 unset($vars['value']);
 
-if(isset($vars['validate'])){
-    $vars['class'] .= " ".libform_get_validators($vars['validate']);
-}
 $i=0;
-
+$validate_messages = $vars['validate_messages'];
 if ($options && count($options) > 0) {
 	echo "<ul class=\"$class\" $id>";
 	foreach ($options as $label => $option) {
@@ -64,6 +61,8 @@ if ($options && count($options) > 0) {
 		$vars['checked'] = in_array(elgg_strtolower($option), $value);
 		$vars['value'] = $option;
 
+		$vars = libform_format_attributes($vars,'radio');
+		
 		$attributes = elgg_format_attributes($vars);
 
 		// handle indexed array where label is not specified
@@ -77,4 +76,4 @@ if ($options && count($options) > 0) {
 	}
 	echo '</ul>';
 }
-echo "<label for=\"{$vars['internalname']}\" class=\"error\">{$vars['validate_messages']}</label>";
+echo "<label for=\"{$vars['internalname']}\" class=\"error\">{$validate_messages}</label>";

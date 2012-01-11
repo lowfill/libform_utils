@@ -8,6 +8,6 @@
  * @copyright Diego Andrés Ramírez Aragón 2010
  * @link http://github.com/lowfill/libform_utils
  */
-
+// FIXME update to 1.8
 ?>
 <script type="text/javascript" src="<?php echo $vars['url']?>mod/libform_utils/vendors/jquery-expander/jquery.expander.js"></script>

@@ -19,6 +19,8 @@ $options_values = array(
 echo "<form>";
 echo "<h2>".elgg_echo("libforms:example:comboselect")."</h2>";
 echo elgg_view('input/comboselect',array('internalname'=>"comboselect",'options_values'=>$options_values));
+echo "<br>";
+echo elgg_view('input/comboselect',array('internalname'=>"comboselect2",'options_values'=>$options_values,'value'=>array("2","4")));
 
 echo "</form>";
 

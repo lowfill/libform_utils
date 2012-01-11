@@ -15,7 +15,7 @@
 function libform_utils_init(){
 	$root = dirname(__FILE__);
 	$url_root = elgg_get_site_url()."mod/libform_utils";
-	
+
 	//Register css and javascripts
 	elgg_register_css("libform:css","$url_root/css/libform.css");
 	// Comboselect
@@ -39,7 +39,7 @@ function libform_utils_init(){
 	if($current_language != "en" && file_exists("$root/vendors/jquery-validate/localization/messages_{$current_language}.js")){
 		elgg_register_js("libform:validator:i18n","$url_root/vendors/jquery-validate/localization/messages_{$current_language}.js");
 	}
-	
+
 	//Register handlers
 	elgg_register_page_handler('libform','libform_page_handler');
 	elgg_register_page_handler('suggest','suggest_page_handler');
@@ -178,9 +178,40 @@ function libform_get_countries(){
 	}
 	return $countries;
 }
+
 function libform_get_country($code){
 	$countries = libform_get_countries();
 	return $countries[$code];
+}
+
+function libform_format_attributes(array $attrs,$type='text'){
+	if(array_key_exists('internalname', $attrs) && !array_key_exists('internalid', $attrs)){
+		$attrs['internalid']=$attrs['internalname'];
+	}
+	if(array_key_exists('multiple', $attrs) && $attrs['multiple']===true){
+		$attrs['internalname'].="[]";
+	}
+	if(array_key_exists('validate', $attrs)){
+		switch($type){
+			case "comboselect":
+				//FIXME Implements automatic validator for this kind of field
+				break;
+			case "radio":
+			case "checkbox":
+			case "dropdown":
+				$validators = libform_get_validators($attrs['validate']);
+				break;
+			default:
+				$validators = libform_get_validators($attrs['validate'],$attrs['validate_messages']);
+		}
+		$attrs['class'].=" $validators";
+		unset($attrs['validate']);
+		unset($attrs['validate_messages']);
+	}
+	// Cleaning old parameters
+	unset($attrs['separator']);
+	
+	return $attrs;
 }
 
 elgg_register_event_handler('init','system','libform_utils_init');

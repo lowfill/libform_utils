@@ -46,17 +46,12 @@ if (!$vars['disable_security']) {
 	$body = elgg_view('input/securitytoken') . $body;
 }
 unset($vars['disable_security']);
+$validate = $vars['validate'];
+unset($vars['validate']);
 
-if (isset($vars['internalid'])) {
-	$vars['internalid'] = $vars['internalid'];
-}
-else{
-	$vars['internalid'] = $vars['internalname'];
-}
-
-
+$vars = libform_format_attributes($vars,'form');
 $attributes = elgg_format_attributes($vars);
 echo "<form $attributes><fieldset>$body</fieldset></form>";
-if($vars['validate']){
+if($validate){
 	echo elgg_view('input/validator',$vars);
 }

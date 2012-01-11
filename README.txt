@@ -1,7 +1,8 @@
 libform_utils
 =============
 
-This is a Elgg plugin that adds a battery of improvements to form related views.
+This is a Elgg plugin that adds some improvements to form related views, specifically
+
   - aditional fields
   - validation framework
 
@@ -22,7 +23,7 @@ How validation framework works?
 Using the jQuery validator plugin (http://bassistance.de/jquery-plugins/jquery-plugin-validation/)
 this plugin add validation features to default 'input' fields.
 
-His use is straightforward just add the 'validate' field to the input view parameters specifying 
+His use is straightforward just add the 'validate' property to the input view parameters specifying 
 what kind of validation do you have and thats it!. 
 Of course you couldn't forget to call 'input/validator' after your form to make the magic works. 
 If you use the 'input/form' view and mark it with the 'validate' param it do it for you.

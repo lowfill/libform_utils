@@ -47,10 +47,6 @@ if (isset($vars['src']) && strpos($vars['src'], elgg_get_site_url()) === false) 
 	$vars['src'] = "";
 }
 
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-    $vars['internalid'] = $vars['internalname'];
-}
-
+$vars = libform_format_attributes($vars,'button');
 ?>
 <input <?php echo elgg_format_attributes($vars); ?> />

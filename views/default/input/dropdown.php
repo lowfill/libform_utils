@@ -45,20 +45,9 @@ if(!is_array($values)){
 
 unset($vars['value']);
 
-if(isset($vars['validate'])){
-	$validators = libform_get_validators($vars['validate']);
-	$vars['class'].=" $validators";
-}
+$vars = libform_format_attributes($vars,'dropdown');
 
-if(array_key_exists('multiple',$vars) && $vars['multiple']===true){
-	$vars['internalname'].="[]";
-}
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-	$vars['internalid'] = $vars['internalname'];
-}
-
-
+$validate_messages = $vars['validate_messages'];
 ?>
 <select <?php echo elgg_format_attributes($vars); ?>>
 <?php
@@ -76,7 +65,7 @@ if ($options_values) {
 	if (is_array($options)) {
 		foreach ($options as $option) {
 			$option_attrs = elgg_format_attributes(array(
-				'selected' => in_array($opt_value,$values)
+				'selected' => in_array($option,$values)
 			));
 
 			echo "<option $option_attrs>$option</option>";
@@ -85,4 +74,8 @@ if ($options_values) {
 }
 ?>
 </select>
-<?php echo "<label for=\"{$vars['name']}[]\" class=\"error\">{$vars['validate_messages']}</label>";?>
+<?php
+if (!empty($validate_messages)){ 
+	echo "<label for=\"{$vars['name']}\" class=\"error\">{$validate_messages}</label>";
+}
+?>

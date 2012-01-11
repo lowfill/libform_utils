@@ -37,7 +37,7 @@ if(!empty($vars["enable_postal_code"])){
 
 <div class="location" id="location_field_<?php echo $name;?>">
 <?php echo elgg_echo('libform:country')?>:
-<?php echo elgg_view('input/pulldown',array('internalname'=>"{$name}_country",
+<?php echo elgg_view('input/dropdown',array('internalname'=>"{$name}_country",
 											'options_values'=>$countries,
                                             'value'=>$country_value,
                                             'validate'=>"required"));
@@ -51,7 +51,7 @@ if(!empty($vars["enable_postal_code"])){
 <?php }?>
 <br>
 <?php
-    echo elgg_view('input/pulldown',array('internalname'=>"{$name}_state",
+    echo elgg_view('input/dropdown',array('internalname'=>"{$name}_state",
                                           'class'=>"location_field",
                                           'options_values'=>$default_option,
                                           'validate'=>"required"));

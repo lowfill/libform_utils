@@ -34,15 +34,7 @@ $defaults = array(
 	'size' => 30,
 );
 
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-    $vars['internalid'] = $vars['internalname'];
-}
-
-if(isset($vars['validate'])){
-    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
-    $vars['class'].=" $validators";
-}
+$vars = libform_format_attributes($vars,'file');
 $attrs = array_merge($defaults, $vars);
 
 ?>

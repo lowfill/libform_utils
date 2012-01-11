@@ -19,7 +19,7 @@
  * @param $vars['internalname'] An array with a row by each column to be displayed. See flexigrid documentation for all posible options
  * @param $vars['default_series'] An array with the series to be loaded by default
  */
-
+// FIXME update to 1.8
 elgg_extend_view("metatags","jquery/flot");
 echo elgg_view("jquery/flot-loader",array('flot_modules'=>array('selection','crosshair','timehelpers')));
 

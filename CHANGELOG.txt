@@ -1,3 +1,6 @@
+Version 0.5
+  Migration to Elgg 1.8
+  
 Version 0.4
   Added timeline ouput field 
 

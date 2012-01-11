@@ -22,11 +22,6 @@ if (isset($vars['class'])) {
 	$vars['class'] = "elgg-input-email";
 }
 
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-    $vars['internalid'] = $vars['internalname'];
-}
-
 $vars['validate'] = "email;{$vars['validate']}";
 
 echo elgg_view("input/text",$vars);

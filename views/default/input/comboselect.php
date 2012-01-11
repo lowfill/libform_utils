@@ -11,11 +11,6 @@ elgg_load_css("libform:css");
 elgg_load_css("libform:comboselect");
 elgg_load_js("libform:comboselect");
 
-//FIXME Implements automatic validator for this kind of field
-if(isset($vars['validate'])){
-    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
-}
-
 $selected_values = array();
 if(!is_array($vars["value"])){
   $selected_values = explode(",",$vars["value"]);
@@ -23,20 +18,28 @@ if(!is_array($vars["value"])){
 else{
   $selected_values = $vars["value"];
 }
+unset($vars['value']);
 
-$size = (!empty($vars["size"]))?$vars["size"]:6;
+$options_values = $vars['options_values'];
+unset($vars['options_values']);
 
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-    $internalid = $vars['internalname'];
-}
+$options = $vars['options'];
+unset($vars['options']);
 
+$defaults = array(
+	'size'=>'6',
+	'multiple'=>true
+);
+
+$vars = array_merge($defaults,$vars);
+
+$vars = libform_format_attributes($vars,'comboselect');
 ?>
-<select id="<?php echo $internalid; ?>" name="<?php echo $vars['internalname']; ?>[]" multiple="multiple" size="<?php echo $size; ?>" <?php echo $vars['js']; ?> <?php if ($vars['disabled']) echo ' disabled="yes" '; ?> class="<?php echo $class; ?>">
+<select <?php echo elgg_format_attributes($vars); ?>>
 <?php
-	if ($vars['options_values'])
+	if ($options_values)
 	{
-		foreach($vars['options_values'] as $value => $option) {
+		foreach($options_values as $value => $option) {
 	        if (!in_array($value,$selected_values)) {
 	            echo "<option value=\"$value\">". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";
 	        } else {
@@ -46,7 +49,7 @@ if(empty($internalid)){
 	}
 	else
 	{
-	    foreach($vars['options'] as $option) {
+	    foreach($options as $option) {
 	        if (!in_array($option,$selected_values)) {
 	            echo "<option value=\"$option\">". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";
 	        } else {
@@ -59,6 +62,6 @@ if(empty($internalid)){
 <div class="clearfloat"> </div>
 <script type="text/javascript">
   jQuery(document).ready(function(){
-	 $('#<?php echo $internalid?>').comboselect({ sort: 'right'});
+	 $('#<?php echo $vars['internalid']?>').comboselect({ sort: 'right'});
   });
 </script>
