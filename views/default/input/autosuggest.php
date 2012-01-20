@@ -24,13 +24,13 @@ echo elgg_view('input/text',$vars);
 if(array_key_exists('suggest',$vars)){
     switch($vars['suggest']){
         case "users":
-            $suggest_url=$vars['url']."pg/suggest/user";
+            $suggest_url=$vars['url']."suggest/user";
             break;
         case "groups":
-            $suggest_url=$vars['url']."pg/suggest/group";
+            $suggest_url=$vars['url']."suggest/group";
             break;
         default:
-            $suggest_url=$vars['url']."pg/suggest/{$vars['suggest']}/{$vars['extra_param']}";
+            $suggest_url=$vars['url']."suggest/{$vars['suggest']}/{$vars['extra_param']}";
     }
 }
 $style = "";
