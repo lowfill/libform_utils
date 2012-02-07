@@ -24,7 +24,7 @@ elgg_load_js("libform:grid");
 
 $placeholder = (array_key_exists('internalname',$vars))?$vars['internalname']:'grid';
 $endpoint = (array_key_exists('endpoint',$vars)) ? $vars['endpoint'] : 'users';
-$url="{$CONFIG->url}pg/grid/{$endpoint}/";
+$url="{$CONFIG->url}grid/{$endpoint}/";
 if(array_key_exists('extra_params',$vars)){
 	$url = elgg_http_add_url_query_elements($url,$vars['extra_params']);
 }
