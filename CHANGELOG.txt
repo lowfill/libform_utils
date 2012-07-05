@@ -1,0 +1,14 @@
+Version 0.4
+  Added timeline ouput field 
+
+Version 0.3
+  Added grid ouput field 
+  
+Version 0.2
+  Added location field
+
+Version 0.1
+  Initial release
+    - Validation framework
+    - Autosuggest field
+    - Comboselect field
