@@ -43,4 +43,3 @@ echo elgg_view('output/grid',array('internalname'=>'grid2',
 echo "</p></form>";
 
 ?>
-

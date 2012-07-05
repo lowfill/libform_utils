@@ -33,7 +33,7 @@ if(array_key_exists('suggest',$vars)){
 }
 $style = "";
 if(!empty($vars['style'])){
-    $style=$vars['style'];
+    $style="-".$vars['style'];
 }
 //TODO i18n
 $auto_suggest_defaults=array(

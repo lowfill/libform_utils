@@ -1,0 +1,15 @@
+.localtime{
+	background: url("http://cdn1.iconfinder.com/data/icons/Sizicons/16x16/clock.png") no-repeat;
+	display:inline-block;
+	height:18px;
+	padding-left:20px;
+	cursor: pointer;
+	vertical-align:middle;
+	margin-left:4px;
+}
+.localtime:hover .localtime-content{
+	display: inline-block;
+}
+.localtime-content{
+	display:none;
+}

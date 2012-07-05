@@ -1,0 +1,18 @@
+@CHARSET "ISO-8859-1";
+
+.suggestBox-box{
+	border:1px solid #c0c0c0;
+	padding: 4px;	
+}
+
+.suggestBox-box-title{
+	color: #c0c0c0;	
+	padding-left: 10px;
+}
+
+.suggestBox-box ul{
+	list-style:none;
+	padding-left: 15px;
+}
+
+
