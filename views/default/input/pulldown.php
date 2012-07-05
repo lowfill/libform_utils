@@ -70,7 +70,11 @@ if ($vars['options_values']) {
 	}
 } else {
 	foreach($vars['options'] as $option) {
+<<<<<<< HEAD
 		if (!in_array($option,$values)) {
+=======
+		if (!in_array($value,$values)) {
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 			echo "<option>". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";
 		} else {
 			echo "<option selected=\"selected\">". htmlentities($option, ENT_QUOTES, 'UTF-8') ."</option>";

@@ -33,7 +33,11 @@ if(array_key_exists('suggest',$vars)){
 }
 $style = "";
 if(!empty($vars['style'])){
+<<<<<<< HEAD
     $style="-".$vars['style'];
+=======
+    $style=$vars['style'];
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 }
 //TODO i18n
 $auto_suggest_defaults=array(

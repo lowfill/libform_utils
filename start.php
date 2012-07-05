@@ -18,7 +18,10 @@ function libform_utils_init(){
 	register_page_handler('libform','libform_page_handler');
 	register_page_handler('suggest','suggest_page_handler');
 	register_page_handler('grid','grid_page_handler');
+<<<<<<< HEAD
 	register_page_handler('timeline','timeline_page_handler');
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 
 	set_include_path(dirname(__FILE__)."/vendors/pear/:".get_include_path());
 }
@@ -63,7 +66,11 @@ function suggest_page_handler($page){
 		$data = array();
 		if(!empty($entities)){
 			foreach($entities as $entity){
+<<<<<<< HEAD
 				$data[]=array('id'=>$entity->guid,'name'=>$entity->name,'url'=>$entity->getURL());
+=======
+				$data[]=array('id'=>$entity->guid,'name'=>$entity->name);
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 			}
 		}
 	}
@@ -94,6 +101,7 @@ function grid_page_handler($page){
 	}
 }
 /**
+<<<<<<< HEAD
  * Timeline page handler
  * @param $page
  */
@@ -109,6 +117,8 @@ function timeline_page_handler($page){
 }
 
 /**
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
  * Get the list of validators and messages from an string
  *
  * @param string $validator_str ';' separated validators string
@@ -135,7 +145,10 @@ function libform_get_validators($validator_str,$messages=""){
 	}
 	return "{".implode(",",$validators)."}";
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 function libform_get_countries(){
 	static $countries = array();
 	$raw = file(dirname(__FILE__)."/vendors/countries.txt");
@@ -148,11 +161,15 @@ function libform_get_countries(){
 	}
 	return $countries;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 function libform_get_country($code){
 	$countries = libform_get_countries();
 	return $countries[$code];
 }
+<<<<<<< HEAD
 
 function libform_get_timezone($timezone,$full=true){
 	$timezones = libform_get_timezones();
@@ -473,6 +490,8 @@ function libform_get_timezones(){
 	return $timezones;
 }
 
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 register_elgg_event_handler('init','system','libform_utils_init');
 
 ?>

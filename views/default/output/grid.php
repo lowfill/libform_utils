@@ -4,12 +4,15 @@
  * 
  * This view uses Flexigrid (http://flexigrid.info/) to display data in a AJAX way
  * 
+<<<<<<< HEAD
  * @package ElggLibFormUtils
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Diego Andrés Ramírez Aragón <dramirezaragon@gmail.com>
  * @copyright Diego Andrés Ramírez Aragón 2011
  * @link http://github.com/lowfill/libform_utils
  * 
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
  * @param $vars['internalname']
  * @param $vars['endpoint'] Data source to be called. The name is used for display a view 'grid/<endpoint>_data. See libform_utils/views/default/grid/* for examples
  * @param $vars['extra_params'] Extra params for filter data
@@ -31,7 +34,10 @@ if(array_key_exists('extra_params',$vars)){
 $grid_options = array(
 	'dataType'=>'json',
 	'method'=>'GET',
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 	'sortname'=>'',
 	'sortorder'=>'desc',
 	'usepager'=>true,
@@ -108,7 +114,10 @@ $options = json_encode($grid_options);
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	$("#<?php echo $placeholder;?>").flexigrid(<?php echo $options?>);   
+<<<<<<< HEAD
 	//$("#<?php echo $placeholder;?>").flexigrid();   
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 });
 </script>
 

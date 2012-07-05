@@ -58,7 +58,11 @@ $data = array(
 	'rows'=>$rows
 );
 
+<<<<<<< HEAD
 $data =json_encode($data,JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_HEX_AMP);
 echo $data;
 
+=======
+echo json_encode($data);
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 ?>

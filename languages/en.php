@@ -22,6 +22,7 @@ $language = array(
 	'libforms:grid:outof'=>"of",
 	'libforms:grid:findtext'=>"Find",
 	'libforms:grid:procmsg'=>'Processing, please wait ...',
+<<<<<<< HEAD
 	'libforms:grid:errormsg'=>"Connection Error",
 
 	'libform:timefields'=>"Time fields",
@@ -283,6 +284,10 @@ $language = array(
 	'libforms:AX'=>"Åland Islands",
 	
 	'libforms:local_time'=>"Local time",
+=======
+	'libforms:grid:errormsg'=>"Connection Error",	
+	
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 );
 
 add_translation("en",$language);

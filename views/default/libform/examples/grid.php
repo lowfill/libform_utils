@@ -43,3 +43,7 @@ echo elgg_view('output/grid',array('internalname'=>'grid2',
 echo "</p></form>";
 
 ?>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6866a794580b5426697147563d01187d0813e938

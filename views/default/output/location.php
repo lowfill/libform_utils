@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 /**
  * Location output view or Elgg
  * 
@@ -20,4 +21,9 @@ if(!empty($city_value)){
 if(!empty($postal_code_value)){
 	echo "  $postal_code_value";
 }
+=======
+
+//TODO Adds some extra config
+echo $vars['value'];
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 ?>

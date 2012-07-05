@@ -16,7 +16,11 @@ if(!is_array($value)){
 }
 
 $value = array_map(elgg_echo,$value);
+<<<<<<< HEAD
 $value = implode(', ',$value);
+=======
+$value = implode(',',$value);
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 
 echo $value;
 ?>

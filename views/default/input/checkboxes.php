@@ -18,6 +18,7 @@
  * @uses $vars['validate_messages'] The custom validator messages
  */
 
+<<<<<<< HEAD
 $class = (isset($vars['class'])) ? $vars['class'] : 'input-checkboxes';
 $value = (isset($vars['value'])) ? $vars['value'] : NULL;
 $value_array = (is_array($value)) ? array_map('strtolower', $value) : array(strtolower($value));
@@ -98,4 +99,54 @@ if ($options) {
 	}
 }
 
+=======
+$class = $vars['class'];
+if (!$class) {
+    $class = "input-checkboxes";
+}
+if(isset($vars['validate'])){
+    $validators = libform_get_validators($vars['validate']);
+}
+$i=0;
+
+foreach($vars['options'] as $label => $option) {
+    //if (!in_array($option,$vars['value'])) {
+    if (is_array($vars['value'])) {
+        $valarray = $vars['value'];
+        $valarray = array_map('strtolower', $valarray);
+        if (!in_array(strtolower($option),$valarray)) {
+            $selected = "";
+        } else {
+            $selected = "checked = \"checked\"";
+        }
+    } else {
+        if (strtolower($option) != strtolower($vars['value'])) {
+            $selected = "";
+        } else {
+            $selected = "checked = \"checked\"";
+        }
+    }
+    if($i==0 && !empty($validators)){
+        $class.=" $validators";
+    }
+    $labelint = (int) $label;
+    if ("{$label}" == "{$labelint}") {
+        $label = $option;
+    }
+
+    $internalid = $vars['internalid'];
+    if(empty($internalid)){
+        $internalid = $vars['internalname'];
+    }
+    $disabled = "";
+    if ($vars['disabled']){
+        $disabled = ' disabled="yes" ';
+    }
+    $separator = "<br />";
+    if(!empty($vars['separator'])){
+        $separator = $vars['separator'];
+    }
+    echo "<label><input type=\"checkbox\" $internalid $disabled {$vars['js']} name=\"{$vars['internalname']}[]\" value=\"".htmlentities($option, ENT_QUOTES, 'UTF-8')."\" {$selected} class=\"$class\" />{$label}</label>$separator";
+}
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 echo "<label for=\"{$vars['internalname']}[]\" class=\"error\">{$vars['validate_messages']}</label>";

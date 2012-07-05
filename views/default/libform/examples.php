@@ -27,8 +27,11 @@ if(!empty($option)){
   <li><a href="<?php echo $vars['url']."pg/libform/?option=validate";?>" <?php echo $validate_selected?>><?php echo elgg_echo("libform:validate");?></a></li>
   <li><a href="<?php echo $vars['url']."pg/libform/?option=location";?>" <?php echo $location_selected?>><?php echo elgg_echo("libform:location");?></a></li>
   <li><a href="<?php echo $vars['url']."pg/libform/?option=grid";?>" <?php echo $location_selected?>><?php echo elgg_echo("libform:grid");?></a></li>
+<<<<<<< HEAD
   <li><a href="<?php echo $vars['url']."pg/libform/?option=timefields";?>" <?php echo $timefields_selected?>><?php echo elgg_echo("libform:timefields");?></a></li>
   <li><a href="<?php echo $vars['url']."pg/libform/?option=suggestbox";?>" <?php echo $suggestbox_selected?>><?php echo elgg_echo("libform:suggestbox");?></a></li>
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
   </ul>
 </div>
 <?php

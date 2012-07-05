@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 /**
  * Flexigrid (http://flexigrid.info/) loader
  * 
@@ -9,6 +10,8 @@
  * @link http://github.com/lowfill/libform_utils
  * 
  */
+=======
+>>>>>>> 6866a794580b5426697147563d01187d0813e938
 
 ?>
 <link type="text/css" rel="stylesheet" href="<?php echo $vars["url"];?>mod/libform_utils/vendors/flexigrid/css/flexigrid/flexigrid.css" ></link>
