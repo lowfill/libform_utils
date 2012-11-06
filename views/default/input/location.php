@@ -1,7 +1,6 @@
 <?php
 
 $enabled = elgg_get_plugin_setting('location','libform_utils');
-error_log('Location:' . $enabled);
 
 if(empty($enabled) || $enabled=='yes'){
 
