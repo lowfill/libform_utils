@@ -1,6 +1,8 @@
 <?php
 
 $language = array(
+	'libform:settings:location:title'=>'Location field',
+	'libform:settings:location'=>'Enable location field?',
     'libform:choose_one'=>"Choose one",
     'libform:country'=>"Country",
     'libform:state'=>"State/Province",
