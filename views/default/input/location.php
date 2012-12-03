@@ -126,7 +126,9 @@ else{
 	}
 
 	$vars = array_merge($defaults, $vars);
-
+	
+	$vars = libform_format_attributes($vars,'text');
+	
 	echo elgg_view('input/tag', $vars);
 }
 ?>

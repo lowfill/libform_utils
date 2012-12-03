@@ -14,6 +14,7 @@ elgg_load_js("libform:comboselect");
 $selected_values = array();
 if(!is_array($vars["value"])){
   $selected_values = explode(",",$vars["value"]);
+  $selected_values = array_map('trim',$selected_values);
 }
 else{
   $selected_values = $vars["value"];

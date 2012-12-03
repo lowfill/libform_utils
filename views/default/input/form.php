@@ -21,6 +21,11 @@
  * @uses $vars['validate'] If you wants this form to be validated
  */
 
+if(!array_key_exists('internalname', $vars)){
+	$action = str_replace(elgg_get_config('url'),'',$vars['action']);
+	$vars['internalname'] = 'elgg-form-' . preg_replace('/[^a-z0-9]/i', '-', $action);
+}
+
 if (isset($vars['class'])) {
 	$vars['class'] = "elgg-form {$vars['class']}";
 } else {
@@ -35,6 +40,7 @@ $defaults = array(
 );
 
 $vars = array_merge($defaults, $vars);
+
 
 $vars['action'] = elgg_normalize_url($vars['action']);
 $vars['method'] = strtolower($vars['method']);
@@ -51,6 +57,7 @@ unset($vars['validate']);
 
 $vars = libform_format_attributes($vars,'form');
 $attributes = elgg_format_attributes($vars);
+
 echo "<form $attributes><fieldset>$body</fieldset></form>";
 if($validate){
 	echo elgg_view('input/validator',$vars);
