@@ -9,6 +9,6 @@
  * @link http://github.com/lowfill/libform_utils
  * 
  */
-
+// FIXME update to 1.8
 ?>
 <script type="text/javascript" src="<?php echo $vars["url"];?>mod/libform_utils/vendors/jgcharts/jgcharts.js"></script>

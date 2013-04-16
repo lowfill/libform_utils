@@ -16,20 +16,12 @@
  * @uses $vars['validate_messages'] The custom validator messages
  */
 
-$class = $vars['class'];
-if (!$class) {
-	$class = "input-url";
+if (isset($vars['class'])) {
+	$vars['class'] = "elgg-input-url {$vars['class']}";
+} else {
+	$vars['class'] = "elgg-input-url";
 }
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-    $internalid = $vars['internalname'];
-}
+
 $vars["validate"] = "url;".$vars["validate"];
-if(isset($vars['validate'])){
-    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
-    $class.=" $validators";
-}
 
-?>
-
-<input type="text" <?php if ($vars['disabled']) echo ' disabled="yes" '; ?> <?php echo $vars['js']; ?> name="<?php echo $vars['internalname']; ?>" <?php echo "id=\"{$internalid}\""; ?> value="<?php echo htmlentities($vars['value'], ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo $class; ?>"/>
+echo elgg_view("input/text",$vars);

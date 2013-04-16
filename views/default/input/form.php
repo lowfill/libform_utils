@@ -21,46 +21,44 @@
  * @uses $vars['validate'] If you wants this form to be validated
  */
 
-//FIXME Add a name to the form even if not provided by user
-if (isset($vars['internalname'])) {
-	$name = $vars['internalname'];
-	$id = $name;
-} else {
-	$name = '';
+if(!array_key_exists('internalname', $vars)){
+	$action = str_replace(elgg_get_config('url'),'',$vars['action']);
+	$vars['internalname'] = 'elgg-form-' . preg_replace('/[^a-z0-9]/i', '-', $action);
 }
 
-if (isset($vars['internalid'])) {
-	$id = $vars['internalid'];
+if (isset($vars['class'])) {
+	$vars['class'] = "elgg-form {$vars['class']}";
+} else {
+	$vars['class'] = 'elgg-form';
 }
+
+//FIXME Add a name to the form even if not provided by user
+$defaults = array(
+	'method' => "post",
+	'disable_security' => FALSE,
+	'internalname'=>''
+);
+
+$vars = array_merge($defaults, $vars);
+
+
+$vars['action'] = elgg_normalize_url($vars['action']);
+$vars['method'] = strtolower($vars['method']);
 
 $body = $vars['body'];
-$action = $vars['action'];
-if (isset($vars['enctype'])) {
-	$enctype = $vars['enctype'];
-} else {
-	$enctype = '';
-}
-if (isset($vars['method'])) {
-	$method = $vars['method'];
-} else {
-	$method = 'POST';
-}
-
-$method = strtolower($method);
-
+unset($vars['body']);
 // Generate a security header
-$security_header = "";
-if (!isset($vars['disable_security']) || $vars['disable_security'] != true) {
-	$security_header = elgg_view('input/securitytoken');
+if (!$vars['disable_security']) {
+	$body = elgg_view('input/securitytoken') . $body;
 }
-?>
-<form <?php if ($id) { ?>id="<?php echo $id; ?>" <?php } ?> <?php if ($name) { ?>name="<?php echo $name; ?>" <?php } ?> <?php echo $vars['js']; ?> action="<?php echo $action; ?>" method="<?php echo $method; ?>" <?php if ($enctype!="") echo "enctype=\"$enctype\""; ?>>
-<?php echo $security_header; ?>
-<?php echo $body; ?>
-</form>
-<?php
-    if($vars['validate']){
-        elgg_extend_view("metatags","jquery/validate");
-        echo elgg_view('input/validator',$vars);
-    }
-?>
+unset($vars['disable_security']);
+$validate = $vars['validate'];
+unset($vars['validate']);
+
+$vars = libform_format_attributes($vars,'form');
+$attributes = elgg_format_attributes($vars);
+
+echo "<form $attributes><fieldset>$body</fieldset></form>";
+if($validate){
+	echo elgg_view('input/validator',$vars);
+}

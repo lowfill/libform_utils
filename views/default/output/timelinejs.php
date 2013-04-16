@@ -15,6 +15,7 @@
  * @param $vars['internalname'] An array with a row by each column to be displayed. See flexigrid documentation for all posible options
  * @param $vars['default_series'] An array with the series to be loaded by default
  */
+// FIXME update to 1.8
 ?>
 <script type="text/javascript">
 jQuery(document).ready(function() {

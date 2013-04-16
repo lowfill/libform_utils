@@ -11,7 +11,9 @@
  * @uses $vars['style'] To specify the style of field to be used
  */
 
-elgg_extend_view("metatags","jquery/autosuggest");
+elgg_load_css("libform:css");
+elgg_load_css("libform:autosuggest");
+elgg_load_js("libform:autosuggest");
 
 if(!empty($vars['value'])){
     $field_value = $vars['value'];
@@ -22,18 +24,21 @@ echo elgg_view('input/text',$vars);
 if(array_key_exists('suggest',$vars)){
     switch($vars['suggest']){
         case "users":
-            $suggest_url=$vars['url']."pg/suggest/user";
+            $suggest_url=$vars['url']."suggest/user";
             break;
         case "groups":
-            $suggest_url=$vars['url']."pg/suggest/group";
+            $suggest_url=$vars['url']."suggest/group";
             break;
         default:
-            $suggest_url=$vars['url']."pg/suggest/{$vars['suggest']}/{$vars['extra_param']}";
+            $suggest_url=$vars['url']."suggest/{$vars['suggest']}/{$vars['extra_param']}";
     }
 }
 $style = "";
 if(!empty($vars['style'])){
-    $style="-".$vars['style'];
+    $style=$vars['style'];
+    if(strstr($style, "facebook")!==0){
+    	elgg_load_css("libform:autosuggest:facebook");
+    }
 }
 //TODO i18n
 $auto_suggest_defaults=array(

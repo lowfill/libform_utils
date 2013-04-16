@@ -18,6 +18,7 @@
  * @param $vars['size']
  * @param $vars['barwidth']
  */
+// FIXME update to 1.8
 elgg_extend_view("metatags","jquery/jqcharts");
 
 $labels = array("'Uno','Dos'");

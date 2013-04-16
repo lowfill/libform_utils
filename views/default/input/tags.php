@@ -19,44 +19,39 @@
  * @uses $vars['validate_messages'] The custom validator messages
  */
 
-
-$class = "input-tags";
 if (isset($vars['class'])) {
-	$class = $vars['class'];
+	$vars['class'] = "elgg-input-tags {$vars['class']}";
+} else {
+	$vars['class'] = "elgg-input-tags";
 }
 
-$disabled = false;
-if (isset($vars['disabled'])) {
-	$disabled = $vars['disabled'];
+$defaults = array(
+	'value' => '',
+	'disabled' => false,
+);
+
+if (isset($vars['entity'])) {
+	$defaults['value'] = $vars['entity']->tags;
+	unset($vars['entity']);
 }
 
-$tags = "";
-if (!empty($vars['value'])) {
-	if (is_array($vars['value'])) {
-		foreach($vars['value'] as $tag) {
+$vars = array_merge($defaults, $vars);
 
-			if (!empty($tags)) {
-				$tags .= ", ";
-			}
-			if (is_string($tag)) {
-				$tags .= $tag;
-			} else {
-				$tags .= $tag->value;
-			}
+if (is_array($vars['value'])) {
+	$tags = array();
+
+	foreach ($vars['value'] as $tag) {
+		if (is_string($tag)) {
+			$tags[] = $tag;
+		} else {
+			$tags[] = $tag->value;
 		}
-	} else {
-		$tags = $vars['value'];
 	}
-}
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-    $internalid = $vars['internalname'];
+
+	$vars['value'] = implode(", ", $tags);
 }
 
-if(isset($vars['validate'])){
-    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
-    $class.=" $validators";
-}
+$vars = libform_format_attributes($vars,'tags');
 
 ?>
-<input type="text" <?php if ($disabled) echo ' disabled="yes" '; ?><?php echo $vars['js']; ?> name="<?php echo $vars['internalname']; ?>" <?php echo "id=\"{$internalid}\""; ?> value="<?php echo htmlentities($tags, ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo $class; ?>"/>
+<input type="text" <?php echo elgg_format_attributes($vars); ?> />

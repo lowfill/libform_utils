@@ -12,25 +12,16 @@
 
 global $CONFIG;
 
-$option = get_input('option','comboselect');
-$selected="class=\"selected\"";
-if(!empty($option)){
-    $var="{$option}_selected";
-    $$var=$selected;
+$user_option = get_input('option','comboselect');
+$options = array("comboselect","autosuggest","validate","location","grid");
+$tabs = array();
+foreach($options as $option){
+	$selected = ($user_option == $option) ? true : false; 
+	$tabs[] = array('title'=>elgg_echo("libform:{$option}"),
+					'url'=>$vars['url']."libform/?option=$option",
+					'id'=>"libform_{$option}",
+				 	'selected'=>$selected);
+	
 }
-?>
-
-<div id="elgg_horizontal_tabbed_nav">
-  <ul>
-  <li><a href="<?php echo $vars['url']."pg/libform/?option=comboselect";?>" <?php echo $comboselect_selected?>><?php echo elgg_echo("libform:comboselect");?></a></li>
-  <li><a href="<?php echo $vars['url']."pg/libform/?option=autosuggest";?>" <?php echo $autosuggest_selected?>><?php echo elgg_echo("libform:autosuggest");?></a></li>
-  <li><a href="<?php echo $vars['url']."pg/libform/?option=validate";?>" <?php echo $validate_selected?>><?php echo elgg_echo("libform:validate");?></a></li>
-  <li><a href="<?php echo $vars['url']."pg/libform/?option=location";?>" <?php echo $location_selected?>><?php echo elgg_echo("libform:location");?></a></li>
-  <li><a href="<?php echo $vars['url']."pg/libform/?option=grid";?>" <?php echo $location_selected?>><?php echo elgg_echo("libform:grid");?></a></li>
-  <li><a href="<?php echo $vars['url']."pg/libform/?option=timefields";?>" <?php echo $timefields_selected?>><?php echo elgg_echo("libform:timefields");?></a></li>
-  <li><a href="<?php echo $vars['url']."pg/libform/?option=suggestbox";?>" <?php echo $suggestbox_selected?>><?php echo elgg_echo("libform:suggestbox");?></a></li>
-  </ul>
-</div>
-<?php
-    echo elgg_view("libform/examples/{$option}",$vars);
-?>
+echo elgg_view("navigation/tabs",array('tabs'=>$tabs));
+echo elgg_view("libform/examples/{$user_option}",$vars);

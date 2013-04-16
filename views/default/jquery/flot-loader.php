@@ -9,7 +9,7 @@
  * @link http://github.com/lowfill/libform_utils
  * 
  */
-
+// FIXME update to 1.8
 if(is_array($vars["flot_modules"])){
 	foreach($vars["flot_modules"] as $module){
 ?>

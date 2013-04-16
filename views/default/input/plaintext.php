@@ -17,20 +17,25 @@
  *
  */
 
-$class = $vars['class'];
-if (!$class) {
-	$class = "input-textarea";
-}
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-    $internalid = $vars['internalname'];
+if (isset($vars['class'])) {
+	$vars['class'] = "elgg-input-plaintext {$vars['class']}";
+} else {
+	$vars['class'] = "elgg-input-plaintext";
 }
 
-if(isset($vars['validate'])){
-    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
-    $class.=" $validators";
-}
+$defaults = array(
+	'value' => '',
+	'disabled' => false,
+);
 
+$vars = array_merge($defaults, $vars);
+
+$value = $vars['value'];
+unset($vars['value']);
+
+$vars = libform_format_attributes($vars,'plaintext');
 ?>
 
-<textarea class="<?php echo $class; ?>" name="<?php echo $vars['internalname']; ?>" <?php echo "id=\"{$internalid}\""; ?> <?php if ($vars['disabled']) echo ' disabled="yes" '; ?> <?php echo $vars['js']; ?>><?php echo htmlentities($vars['value'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+<textarea <?php echo elgg_format_attributes($vars); ?>>
+<?php echo htmlspecialchars($value, ENT_QUOTES, 'UTF-8', false); ?>
+</textarea>

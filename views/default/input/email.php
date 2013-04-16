@@ -16,22 +16,12 @@
  * @uses $vars['validate_messages'] The custom validator messages
  */
 
-$class = $vars['class'];
-if (!$class) {
-	$class = "input-text";
-}
-
-$internalid = $vars['internalid'];
-if(empty($internalid)){
-    $internalid = $vars['internalname'];
+if (isset($vars['class'])) {
+	$vars['class'] = "elgg-input-email {$vars['class']}";
+} else {
+	$vars['class'] = "elgg-input-email";
 }
 
 $vars['validate'] = "email;{$vars['validate']}";
-if(isset($vars['validate'])){
-    $validators = libform_get_validators($vars['validate'],$vars['validate_messages']);
-    $class.=" $validators";
-}
 
-?>
-
-<input type="text" <?php echo $vars['js']; ?> <?php echo $internalid; ?> name="<?php echo $vars['internalname']; ?>" <?php if (isset($vars['internalid'])) echo "id=\"{$vars['internalid']}\""; ?>value="<?php echo htmlentities($vars['value'], ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo $class; ?>"/>
+echo elgg_view("input/text",$vars);

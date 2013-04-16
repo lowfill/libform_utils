@@ -11,7 +11,7 @@
  * @uses $vars['value'] The email address to display
  *
  */
-
+// FIXME update to 1.8
 //TODO Use some of the available techniques to hide mail from spamers
 if (!empty($vars['value'])) {
 	echo "<a href=\"mailto:" . $vars['value'] . "\">". htmlentities($vars['value'], ENT_QUOTES, 'UTF-8') ."</a>";
