@@ -31,7 +31,7 @@ $body.="</p>";
 $body.='<p>Min, custom message';
 $body.=elgg_view('input/text',array('internalname'=>'text5',
                                   'validate'=>'required;min:3',
-                                  'validate_messages'=>"required:'Please fill this field!',min:'Fill with something greater than 3'"));
+                                  'validate_messages'=>"required:Please fill this field!,min:Fill with something greater than 3"));
 $body.="</p>";
 
 $body.='<p>URL';
@@ -49,7 +49,7 @@ $body.="</p>";
 
 $body.='<p>Password 2';
 $body.=elgg_view('input/password',array('internalname'=>'pass2',
-									 'validate'=>'equalTo:pass'));
+									 'validate'=>'equalTo:#pass'));
 $body.="</p>";
 
 $body.='<p>Plaintext';
@@ -59,36 +59,36 @@ $body.="</p>";
 
 $body.='<p>File (.doc,.jpg)';
 $body.=elgg_view('input/file',array('internalname'=>'file',
-									 'validate'=>"accept:'doc|jpg'"));
+									 'validate'=>"accept:application/msword,image/*"));
 $body.="</p>";
 
 $body.='<p>Radio';
-$body.=elgg_view('input/radio',array('internalname'=>'radio',
+$body.=elgg_view('input/radio',array('internalname'=>'radio1',
 									 'options'=>array('Yes'=>'yes','No'=>'no'),
                                      'separator'=>"&nbsp;",
                                      'validate'=>'required',
-                                     'validate_messages'=>'Please select yes or no'));
+                                     'validate_messages'=>'required:Please select yes or no'));
 $body.="</p>";
 $body.='<p>Radio Horizontal';
 $body.=elgg_view('input/radio',array('internalname'=>'radio',
 									 'options'=>array('Yes'=>'yes','No'=>'no'),
                                      'validate'=>'required',
                                      'align'=>'horizontal',
-                                     'validate_messages'=>'Please select yes or no'));
+                                     'validate_messages'=>'required:Please select yes or no'));
 $body.="</p>";
 
 $body.='<p>Checkbox';
 $body.=elgg_view('input/checkboxes',array('internalname'=>'checkboxes',
 									 'options'=>array('Yes'=>'yes','No'=>'no','Maybe'=>'maybe','Perhaps'=>'perhaps'),
                                      'validate'=>'required;rangelength:[2,3]',
-                                     'validate_messages'=>'Please select between 2 or three options'));
+                                     'validate_messages'=>'rangelength:Please select between 2 or three options'));
 $body.="</p>";
 $body.='<p>Checkbox Horizontal';
 $body.=elgg_view('input/checkboxes',array('internalname'=>'checkboxes2',
 									 'options'=>array('Yes'=>'yes','No'=>'no','Maybe'=>'maybe','Perhaps'=>'perhaps'),
 									 'align'=>'horizontal',
                                      'validate'=>'required;rangelength:[2,3]',
-                                     'validate_messages'=>'Please select between 2 or three options'));
+                                     'validate_messages'=>'rangelength:Please select between 2 or three options'));
 $body.="</p>";
 
 

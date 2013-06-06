@@ -154,16 +154,23 @@ function libform_get_validators($validator_str,$messages=""){
 	foreach($u_validators as $validator){
 		if(empty($validator)) continue;
 		if(strpos($validator,":")>0){
-			$validators[]="{$validator}";
+			$validators["data-rule-".substr($validator,0,strpos($validator,":"))]=substr($validator,strpos($validator,":")+1);
 		}
 		else{
-			$validators[]="{$validator}:true";
+			$validators["data-rule-$validator"]="true";
 		}
 	}
 	if(!empty($messages)){
-		$validators[]="messages:{".$messages."}";
+		$u_messages = explode(",",$messages);
+		if(!empty($u_messages)){
+			foreach($u_messages as $message){
+				list($validator,$message) = explode(':',$message);
+				$validators['data-msg-'.$validator]=$message;
+			}
+		}
+		
 	}
-	return "{".implode(",",$validators)."}";
+	return $validators;
 }
 
 function libform_get_countries(){
@@ -196,15 +203,10 @@ function libform_format_attributes(array $attrs,$type='text'){
 			case "comboselect":
 				//FIXME Implements automatic validator for this kind of field
 				break;
-			case "radio":
-			case "checkbox":
-			case "dropdown":
-				$validators = libform_get_validators($attrs['validate']);
-				break;
 			default:
 				$validators = libform_get_validators($attrs['validate'],$attrs['validate_messages']);
 		}
-		$attrs['class'].=" $validators";
+		$attrs += $validators;
 		unset($attrs['validate']);
 		unset($attrs['validate_messages']);
 	}
