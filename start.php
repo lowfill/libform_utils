@@ -25,6 +25,11 @@ function libform_utils_init(){
 	elgg_register_css("libform:autosuggest","$url_root/vendors/jquery-tokeninput/token-input.css");
 	elgg_register_css("libform:autosuggest:facebook","$url_root/vendors/jquery-tokeninput/token-input-facebook.css");
 	elgg_register_js("libform:autosuggest","$url_root/vendors/jquery-tokeninput/jquery.tokeninput.js");
+	
+	//Registering select2
+	elgg_register_css('select2.css',"$url_root/vendors/select2/select2.css");
+	elgg_register_js('select2.js',"$url_root/vendors/select2/select2.js");
+	
 	// Location
 	elgg_register_js("libform:location:i18n","$url_root/vendors/location/location.php");
 	elgg_register_js("libform:location","$url_root/vendors/location/location.js");
