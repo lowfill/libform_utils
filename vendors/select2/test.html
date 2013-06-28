@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Select 2 test</title>
+<link rel='stylesheet' href="select2.css"/>
+<script src='http://ivaynberg.github.com/select2/js/jquery-1.7.1.min.js'></script>
+<script src='http://ivaynberg.github.com/select2/js/jquery-ui-1.8.20.custom.min.js'></script>
+<script src='select2.js'></script>
+<style>
+select,input{
+    width: 200px;
+}
+</style>
+</head>
+<body>
+
+<form>
+<input type="hidden" class="bigdrop" id="simple" style="width:600px" value='Mi valor'/>
+
+<select id='multiple' multiple="multiple" style="width: 100px">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+</select>
+
+<input type='text' id='text'>
+
+</form>
+<script>
+$(document).ready(function(){
+		$('#simple').select2({
+			placeholder:'Company',
+			minimumInputLength: 2,
+			ajax:{
+				url:'http://localhost/~lowfill/amigodacultura/suggest/messages_users/',
+				quietMillis: 50,
+				data: function(term,page){
+					return {q:term};
+				},
+				results: function(data,query){
+				    console.log(query);
+				    return_object = {results:data};
+				    if(data.length == 0){
+				    	return_object.results = [{id:1,name:query.term}];
+				    }
+					console.log(return_object);
+					return return_object;
+				}
+			},
+            formatSelection: function(item){
+            	console.log(item.name);
+                return item.name;
+            },
+			formatResult: function(item,container,query){
+				return item.name;
+			},
+            id: function(item){
+            	return item.name;
+            },
+            initSelection: function(element,callback){
+                data = [];
+                if(element.val().length >0){
+                    data.push({id:1,name:element.val()});
+                }
+                console.log(data);
+                //console.log(callback);
+                callback({id:1,name:element.val()});
+            }
+		});
+		$('#multiple').select2();
+});
+</script>
+
+</body>
+</html>
